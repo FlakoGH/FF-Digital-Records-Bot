@@ -34,7 +34,7 @@ app.post("/webhook", async (req, res) => {
   const mensaje = req.body.entry?.[0]?.changes?.[0].value?.messages?.[0]?.text?.body;
 
   if (!mensaje) {
-  return res.sendSatus(200);
+  return res.sendStatus(200);
   }
 
   try {
