@@ -1,6 +1,6 @@
 const express = require("express");
 const axios = require("axios");
-const saludos = require("saludos");
+const saludos = require("./data/saludos");
 
 const app = express();
 app.use(express.json());
