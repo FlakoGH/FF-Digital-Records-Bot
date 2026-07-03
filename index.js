@@ -70,7 +70,9 @@ app.post("/webhook", async (req, res) => {
 
   } catch (error) {
     
-    console.error(error.response?.data || error.message);
+    console.error("Error completo:", error.response?.data);
+    console.error("Estado HTTP:", error.response?.status);
+    cosnole.error("Mensaje:", error.message);
 
     res.sendStatus(500);
 
