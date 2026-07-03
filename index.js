@@ -12,6 +12,7 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 const TOKEN = process.env.WHATSAPP_TOKEN;
+console.log("Token cargado:", !!TOKEN);
 const PHONE_NUMBER_ID = process.env.PHONE_NUMBER_ID;
 
 app.get("/webhook", (req, res) => {
