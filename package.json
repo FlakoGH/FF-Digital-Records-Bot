@@ -1,0 +1,9 @@
+{
+  "name": "ff-digital-records-bot",
+  "version": "1.0.0",
+  "description": "Chatbot de WhatsApp Cloud API para FF Digital Records",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  }
+}
