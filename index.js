@@ -47,6 +47,8 @@ app.post("/webhook", async (req, res) => {
   try {
   
   console.log("Mensaje:", mensaje);
+
+ console.log("EAAQsy5dGe:", TOKEN.substring(0, 10));
     
     await axios.post(
      
@@ -72,7 +74,7 @@ app.post("/webhook", async (req, res) => {
     
     console.error("Error completo:", error.response?.data);
     console.error("Estado HTTP:", error.response?.status);
-    cosnole.error("Mensaje:", error.message);
+    console.error("Mensaje:", error.message);
 
     res.sendStatus(500);
 
