@@ -11,13 +11,13 @@ const saludos = [
   "que hubo",
   "q'hubo",
   "ey",
-  "hey"
-  "Quiubo",
-  "Quiubo pues",
-  "Qué más",
-  "Todo bien",
-  "Buenas mi hermano",
-  "Buenas parcero",
-  "Hola bro"
+  "hey",
+  "quiubo",
+  "quiubo pues",
+  "qué más",
+  "todo bien",
+  "buenas mi hermano",
+  "buenas parcero",
+  "hola bro"
   ];
 module.exports = saludos;
