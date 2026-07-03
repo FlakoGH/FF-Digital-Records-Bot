@@ -1,5 +1,6 @@
 const express = require("express");
 const axios = require("axios");
+const saludos = require("saludos");
 
 const app = express();
 app.use(express.json());
@@ -32,11 +33,16 @@ app.post("/webhook", async (req, res) => {
   console.log("Mensaje recibido");
 
   const mensaje = req.body.entry?.[0]?.changes?.[0].value?.messages?.[0]?.text?.body;
+  
+  const texto = mensaje.toLowerCase( ).trim( );
 
   if (!mensaje) {
   return res.sendStatus(200);
   }
-
+  if (saludos.includes(texto)) {
+    console.log("Es un saludo.");
+  }
+  
   try {
   
   console.log("Mensaje:", mensaje);
