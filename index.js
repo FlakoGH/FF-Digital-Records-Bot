@@ -43,6 +43,38 @@ app.post("/webhook", async (req, res) => {
 
   if (saludos.includes(texto)) {
     console.log("Es un saludo.");
+
+await axios.post(
+`https://graph.facebook.com/v25.0/${PHONE_NUMBER_ID}/messages`,
+{
+messaging_product: "whatsapp",
+to:
+req.body.entry[0].changes[0].value.contacts[0].wa_id,
+type: "text",
+text: {
+body:
+`👋 ¡Hola!
+
+Bienvenido a FF Digital Records 🎶
+
+Escribe el número de la opción que deseas:
+
+1️⃣ Escuchar música
+2️⃣ Spotify
+3️⃣ YouTube
+4️⃣ Redes sociales
+5️⃣ Hablar con un asesor`
+}
+},
+{
+headers: {
+Authorization: `Bearer ${TOKEN}`,
+"Content-Type": "application/json"
+}
+}
+);
+return res.sendStatus(200);
+
   }
   
   try {
@@ -63,7 +95,7 @@ app.post("/webhook", async (req, res) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${TOKEN}`,
+          Authorization: `Bearer ${TOKEN}`
           "Content-Type": "application/json"
         }
       }
