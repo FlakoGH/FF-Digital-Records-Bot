@@ -35,11 +35,12 @@ app.post("/webhook", async (req, res) => {
 
   const mensaje = req.body.entry?.[0]?.changes?.[0].value?.messages?.[0]?.text?.body;
   
-  const texto = mensaje.toLowerCase( ).trim( );
-
   if (!mensaje) {
   return res.sendStatus(200);
   }
+  
+  const texto = mensaje.toLowerCase( ).trim( );
+
   if (saludos.includes(texto)) {
     console.log("Es un saludo.");
   }
