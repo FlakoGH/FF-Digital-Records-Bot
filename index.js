@@ -95,7 +95,7 @@ return res.sendStatus(200);
       },
       {
         headers: {
-          Authorization: `Bearer ${TOKEN}`
+          Authorization: `Bearer ${TOKEN}`,
           "Content-Type": "application/json"
         }
       }
