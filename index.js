@@ -60,6 +60,18 @@ const mensaje = req.body.entry?.[0]?.changes?.[0].value?.messages?.[0]?.text?.bo
   
   const texto = mensaje.toLowerCase( ).trim( );
 
+const wamid = mensajeRecibido.id;
+
+if (antiDuplicados.yaProcesado(wamid)) {
+
+    logger.info("⚠ Mensaje duplicado ignorado.");
+    logger.info("🆔 WAMID: " + wamid);
+
+    return res.sendStatus(200);
+}
+
+antiDuplicados.guardar(wamid);
+
   if (saludos.includes(texto)) {
 
     logger.nuevoMensaje({
