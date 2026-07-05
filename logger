@@ -3,7 +3,7 @@ function nuevoMensaje(datos) {
     console.log("══════════════════════════════════════");
     console.log("📨 NUEVO MENSAJE");
     console.log("👤 Remitente:", datos.de);
-    console.log("🆔 WAMID:", datos.id);
+    console.log("🆔 ID:", datos.id);
     console.log("📅 Fecha:", datos.fecha);
     console.log("📝 Tipo:", datos.tipo);
     console.log("💬 Contenido:", datos.contenido);
@@ -25,7 +25,7 @@ function estadoMensaje(datos) {
     if (estado === "read") estado = "Leído";
 
     console.log("══════════════════════════════════════");
-    console.log("📬 ACTUALIZACIÓN DE ESTADO");
+    console.log("📬 ESTADO DEL MENSAJE");
     console.log("👤 Número:", datos.para);
 
 if (datos.nombre) {
@@ -33,7 +33,7 @@ if (datos.nombre) {
 }
     console.log("🆔 ID:", datos.id);
     console.log("📅 Fecha:", datos.fecha);
-    console.log("📌 Nuevo Estado:", estado);
+    console.log("📌 Estado:", estado);
     console.log("══════════════════════════════════════");
 }
 
@@ -54,7 +54,6 @@ function info(texto) {
 module.exports = {
     info,
     nuevoMensaje,
-    estadoMensaje
-mensajeDuplicado
-
+    estadoMensaje,
+    mensajeDuplicado
 };
