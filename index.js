@@ -32,15 +32,32 @@ app.get("/webhook", (req, res) => {
 });
 app.post("/webhook", async (req, res) => {
 
-  console.log("Mensaje recibido");
-
   const mensaje = req.body.entry?.[0]?.changes?.[0].value?.messages?.[0]?.text?.body;
   
   if (!mensaje) {
-  return res.sendStatus(200);
-  }
+
+    if (estado) {
+
+        logger.estadoMensaje({
+            para: estado.recipient_id,
+            id: estado.id,
+            fecha: new Date(Number(estado.timestamp) * 1000).toLocaleString("es-CO"),
+            estado: estado.status
+        });
+
+    } else {
+
+        logger.info("⚠ Webhook recibido sin mensaje ni estado.");
+
+    }
+
+    return res.sendStatus(200);
+}
   
   const texto = mensaje.toLowerCase( ).trim( );
+
+const estado = req.body.entry?.[0]?.changes?.[0]?.value?.statuses?.[0];
+const mensajeRecibido = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
 
   if (saludos.includes(texto)) {
     logger.info("👋 Es un saludo.");
