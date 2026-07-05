@@ -4,6 +4,7 @@ const saludos = require("./data/saludos");
 const logger = require("./logger");
 const antiDuplicados = require("./antiDuplicados");
 const menu = require("./menu");
+const { enviarTexto } = require("./whatsapp/enviarTexto");
 
 const app = express();
 app.use(express.json());
@@ -83,24 +84,10 @@ antiDuplicados.guardar(wamid);
         accion: "Saludo detectado"
     });
 
-await axios.post(
-`https://graph.facebook.com/v25.0/${PHONE_NUMBER_ID}/messages`,
-{
-messaging_product: "whatsapp",
-to:
-req.body.entry[0].changes[0].value.contacts[0].wa_id,
-type: "text",
-text: {
-    body: menu
-}
-},
-{
-headers: {
-Authorization: `Bearer ${TOKEN}`,
-"Content-Type": "application/json"
-}
-}
-);
+const numero = req.body.entry[0].changes[0].value.contacts[0].wa_id;
+
+await enviarTexto(numero, menu);
+
 return res.sendStatus(200);
 
   }
