@@ -64,8 +64,7 @@ const wamid = mensajeRecibido.id;
 
 if (antiDuplicados.yaProcesado(wamid)) {
 
-    logger.info("⚠ Mensaje duplicado ignorado.");
-    logger.info("🆔 WAMID: " + wamid);
+    logger.mensajeDuplicado(wamid);
 
     return res.sendStatus(200);
 }
