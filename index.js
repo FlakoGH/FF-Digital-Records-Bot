@@ -63,6 +63,10 @@ const mensaje = req.body.entry?.[0]?.changes?.[0].value?.messages?.[0]?.text?.bo
   
   const texto = mensaje.toLowerCase( ).trim( );
 
+const numero = req.body.entry[0].changes[0].value.contacts[0].wa_id;
+
+const estadoActual = conversaciones.obtener(numero);
+
 const wamid = mensajeRecibido.id;
 
 if (antiDuplicados.yaProcesado(wamid)) {
@@ -102,6 +106,8 @@ return res.sendStatus(200);
   try {
   
   console.log("Mensaje:", mensaje);
+
+console.log("🧠 Estado actual:", estadoActual);
 
  console.log("EAAQsy5dGe:", TOKEN.substring(0, 10));
     
