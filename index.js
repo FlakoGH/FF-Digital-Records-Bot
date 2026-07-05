@@ -60,7 +60,15 @@ const mensaje = req.body.entry?.[0]?.changes?.[0].value?.messages?.[0]?.text?.bo
   const texto = mensaje.toLowerCase( ).trim( );
 
   if (saludos.includes(texto)) {
-    logger.info("👋 Es un saludo.");
+
+    logger.nuevoMensaje({
+        de: mensajeRecibido.from,
+        id: mensajeRecibido.id,
+        fecha: new Date(Number(mensajeRecibido.timestamp) * 1000).toLocaleString("es-CO"),
+        tipo: mensajeRecibido.type,
+        contenido: mensaje,
+        accion: "Saludo detectado"
+    });
 
 await axios.post(
 `https://graph.facebook.com/v25.0/${PHONE_NUMBER_ID}/messages`,
