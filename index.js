@@ -3,6 +3,7 @@ const axios = require("axios");
 const saludos = require("./data/saludos");
 const logger = require("./logger");
 const antiDuplicados = require("./antiDuplicados");
+const menu = require("./menu");
 
 const app = express();
 app.use(express.json());
@@ -90,18 +91,7 @@ to:
 req.body.entry[0].changes[0].value.contacts[0].wa_id,
 type: "text",
 text: {
-body:
-`👋 ¡Hola!
-
-Bienvenido a FF Digital Records 🎶
-
-Escribe el número de la opción que deseas:
-
-1️⃣ Escuchar música
-2️⃣ Spotify
-3️⃣ YouTube
-4️⃣ Redes sociales
-5️⃣ Hablar con un asesor`
+    body: menu
 }
 },
 {
