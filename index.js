@@ -2,6 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const saludos = require("./data/saludos");
 const logger = require("./logger");
+const antiDuplicados = require("./antiDuplicados");
 
 const app = express();
 app.use(express.json());
