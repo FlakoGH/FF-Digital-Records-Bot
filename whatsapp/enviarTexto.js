@@ -4,9 +4,11 @@ async function enviarTexto(numero, mensaje) {
 
     try {
 
-console.log("PHONE_NUMBER_ID:", process.env.PHONE_NUMBER_ID);
-console.log("TOKEN existe:", !!process.env.TOKEN);
-console.log("Primeros 10 del token:", process.env.TOKEN?.substring(0, 10));
+console.log({
+    PHONE_NUMBER_ID: process.env.PHONE_NUMBER_ID,
+    TOKEN: !!process.env.TOKEN,
+    TOKEN10: process.env.TOKEN?.substring(0, 10)
+});
 
         await axios.post(
 
