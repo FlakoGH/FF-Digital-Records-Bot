@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "titulo": "Ahora Soy Tu Ex",
+    "version": "Cachengue",
+    "tipo": "Single",
+    "artista": "DJ Flako Flow",
+    "genero": "Urbano",
+    "fecha": "2026-06-12",
+    "duracion": "03:19",
+
+    "portada": "",
+
+    "preview": {
+      "tipo": "youtube",
+      "url": ""
+    }
+
+    "plataformas": {
+      "spotify": "",
+      "youtube": "",
+      "youtube_music": "",
+      "apple_music": "",
+      "amazon_music": "",
+      "deezer": "",
+      "musixmatch": ""
+    },
+
+    "destacado": false,
+    "reciente": true,
+
+    "tags": [],
+
+    "estado": {
+      "activo": true
+    }
+  }
+]
