@@ -1,12 +1,19 @@
 function nuevoMensaje(datos) {
-    console.log("\n══════════════════════════════════════");
+
+    console.log("══════════════════════════════════════");
     console.log("📨 NUEVO MENSAJE");
-    console.log("👤 De:", datos.de);
-    console.log("🆔 ID:", datos.id);
+    console.log("👤 Remitente:", datos.de);
+    console.log("🆔 WAMID:", datos.id);
     console.log("📅 Fecha:", datos.fecha);
     console.log("📝 Tipo:", datos.tipo);
     console.log("💬 Contenido:", datos.contenido);
-    console.log("══════════════════════════════════════\n");
+
+    if (datos.accion) {
+        console.log("⚙ Acción:", datos.accion);
+    }
+
+    console.log("══════════════════════════════════════");
+
 }
 
 function estadoMensaje(datos) {
@@ -17,13 +24,17 @@ function estadoMensaje(datos) {
     if (estado === "delivered") estado = "Entregado";
     if (estado === "read") estado = "Leído";
 
-    console.log("\n══════════════════════════════════════");
+    console.log("══════════════════════════════════════");
     console.log("📬 ESTADO DEL MENSAJE");
     console.log("👤 Destinatario:", datos.para);
+
+if (datos.nombre) {
+    console.log("🏷 Nombre:", datos.nombre);
+}
     console.log("🆔 ID:", datos.id);
     console.log("📅 Fecha:", datos.fecha);
     console.log("📌 Estado:", estado);
-    console.log("══════════════════════════════════════\n");
+    console.log("══════════════════════════════════════");
 }
 
 function info(texto) {
