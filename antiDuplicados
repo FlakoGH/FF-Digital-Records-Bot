@@ -1,0 +1,14 @@
+const mensajesProcesados = new Set();
+
+function yaProcesado(id) {
+    return mensajesProcesados.has(id);
+}
+
+function guardar(id) {
+    mensajesProcesados.add(id);
+}
+
+module.exports = {
+    yaProcesado,
+    guardar
+};
