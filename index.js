@@ -5,6 +5,7 @@ const logger = require("./logger");
 const antiDuplicados = require("./antiDuplicados");
 const menu = require("./menu");
 const { enviarTexto } = require("./whatsapp/enviarTexto");
+const conversaciones = require("./estado/conversaciones");
 
 const app = express();
 app.use(express.json());
@@ -85,6 +86,10 @@ antiDuplicados.guardar(wamid);
     });
 
 const numero = req.body.entry[0].changes[0].value.contacts[0].wa_id;
+
+const estadoActual = conversaciones.obtener(numero);
+
+console.log("🧠 Estado:", estadoActual);
 
 await enviarTexto(numero, menu);
 
