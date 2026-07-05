@@ -8,7 +8,7 @@ console.log({
     PHONE_NUMBER_ID: process.env.PHONE_NUMBER_ID,
     TOKEN: !!process.env.WHATSAPP_TOKEN,
 TOKEN10: process.env.WHATSAPP_TOKEN?.substring(0, 10)
-)}
+});
 
         await axios.post(
 
