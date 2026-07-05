@@ -26,7 +26,12 @@ function estadoMensaje(datos) {
     console.log("══════════════════════════════════════\n");
 }
 
+function info(texto) {
+    console.log(texto);
+}
+
 module.exports = {
+    info,
     nuevoMensaje,
     estadoMensaje
 };
