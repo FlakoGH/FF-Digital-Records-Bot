@@ -32,7 +32,10 @@ app.get("/webhook", (req, res) => {
 });
 app.post("/webhook", async (req, res) => {
 
-  const mensaje = req.body.entry?.[0]?.changes?.[0].value?.messages?.[0]?.text?.body;
+const estado = req.body.entry?.[0]?.changes?.[0]?.value?.statuses?.[0];
+const mensajeRecibido = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
+
+const mensaje = req.body.entry?.[0]?.changes?.[0].value?.messages?.[0]?.text?.body;
   
   if (!mensaje) {
 
@@ -55,9 +58,6 @@ app.post("/webhook", async (req, res) => {
 }
   
   const texto = mensaje.toLowerCase( ).trim( );
-
-const estado = req.body.entry?.[0]?.changes?.[0]?.value?.statuses?.[0];
-const mensajeRecibido = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
 
   if (saludos.includes(texto)) {
     logger.info("👋 Es un saludo.");
