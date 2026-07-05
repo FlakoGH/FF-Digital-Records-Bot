@@ -25,15 +25,15 @@ function estadoMensaje(datos) {
     if (estado === "read") estado = "Leído";
 
     console.log("══════════════════════════════════════");
-    console.log("📬 ESTADO DEL MENSAJE");
-    console.log("👤 Destinatario:", datos.para);
+    console.log("📬 ACTUALIZACIÓN DE ESTADO");
+    console.log("👤 Número:", datos.para);
 
 if (datos.nombre) {
     console.log("🏷 Nombre:", datos.nombre);
 }
     console.log("🆔 ID:", datos.id);
     console.log("📅 Fecha:", datos.fecha);
-    console.log("📌 Estado:", estado);
+    console.log("📌 Nuevo Estado:", estado);
     console.log("══════════════════════════════════════");
 }
 
