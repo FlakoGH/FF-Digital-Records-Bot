@@ -95,6 +95,14 @@ const estadoActual = conversaciones.obtener(numero);
 
 console.log("🧠 Estado:", estadoActual);
 
+if (estadoActual === "menu_principal" && texto === "1") {
+
+    await enviarTexto(numero, "🎵 Entraste al menú de Música.");
+
+    return res.sendStatus(200);
+
+}
+
 await enviarTexto(numero, menu);
 
 conversaciones.guardar(numero, "menu_principal");
