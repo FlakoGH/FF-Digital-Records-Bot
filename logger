@@ -37,6 +37,16 @@ if (datos.nombre) {
     console.log("══════════════════════════════════════");
 }
 
+function mensajeDuplicado(id) {
+
+    console.log("══════════════════════════════════════");
+    console.log("⚠ MENSAJE DUPLICADO");
+    console.log("🆔 ID:", id);
+    console.log("🚫 Acción: Ignorado");
+    console.log("══════════════════════════════════════");
+
+}
+
 function info(texto) {
     console.log(texto);
 }
@@ -45,4 +55,6 @@ module.exports = {
     info,
     nuevoMensaje,
     estadoMensaje
+mensajeDuplicado
+
 };
