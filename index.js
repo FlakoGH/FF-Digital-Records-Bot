@@ -43,7 +43,7 @@ app.post("/webhook", async (req, res) => {
   const texto = mensaje.toLowerCase( ).trim( );
 
   if (saludos.includes(texto)) {
-    console.log("Es un saludo.");
+    logger.info("👋 Es un saludo.");
 
 await axios.post(
 `https://graph.facebook.com/v25.0/${PHONE_NUMBER_ID}/messages`,
