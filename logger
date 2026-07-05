@@ -1,0 +1,32 @@
+function nuevoMensaje(datos) {
+    console.log("\n══════════════════════════════════════");
+    console.log("📨 NUEVO MENSAJE");
+    console.log("👤 De:", datos.de);
+    console.log("🆔 ID:", datos.id);
+    console.log("📅 Fecha:", datos.fecha);
+    console.log("📝 Tipo:", datos.tipo);
+    console.log("💬 Contenido:", datos.contenido);
+    console.log("══════════════════════════════════════\n");
+}
+
+function estadoMensaje(datos) {
+
+    let estado = datos.estado;
+
+    if (estado === "sent") estado = "Enviado";
+    if (estado === "delivered") estado = "Entregado";
+    if (estado === "read") estado = "Leído";
+
+    console.log("\n══════════════════════════════════════");
+    console.log("📬 ESTADO DEL MENSAJE");
+    console.log("👤 Destinatario:", datos.para);
+    console.log("🆔 ID:", datos.id);
+    console.log("📅 Fecha:", datos.fecha);
+    console.log("📌 Estado:", estado);
+    console.log("══════════════════════════════════════\n");
+}
+
+module.exports = {
+    nuevoMensaje,
+    estadoMensaje
+};
