@@ -93,6 +93,8 @@ console.log("🧠 Estado:", estadoActual);
 
 await enviarTexto(numero, menu);
 
+conversaciones.guardar(numero, "menu_principal");
+
 return res.sendStatus(200);
 
   }
