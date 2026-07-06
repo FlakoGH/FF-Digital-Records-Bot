@@ -3,7 +3,7 @@ const axios = require("axios");
 const saludos = require("./data/saludos");
 const logger = require("./logger");
 const antiDuplicados = require("./antiDuplicados");
-const menu = require("./menu");
+const menu = require("./menus/menuPrincipal");
 const { enviarTexto } = require("./whatsapp/enviarTexto");
 const conversaciones = require("./estado/conversaciones");
 
