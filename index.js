@@ -127,7 +127,6 @@ console.log("🧠 Estado actual:", estadoActual);
         to: req.body.entry[0].changes[0].value.contacts[0].wa_id,
         text: {
     body: "🤔 No entendí ese mensaje."
-}
         }
       },
       {
