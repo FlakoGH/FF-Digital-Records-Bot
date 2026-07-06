@@ -78,6 +78,14 @@ if (antiDuplicados.yaProcesado(wamid)) {
 
 antiDuplicados.guardar(wamid);
 
+if (estadoActual === "menu_principal" && texto === "1") {
+
+    await enviarTexto(numero, "🎵 Entraste al menú de Música.");
+
+    return res.sendStatus(200);
+
+}
+
   if (saludos.includes(texto)) {
 
     logger.nuevoMensaje({
@@ -94,14 +102,6 @@ const numero = req.body.entry[0].changes[0].value.contacts[0].wa_id;
 const estadoActual = conversaciones.obtener(numero);
 
 console.log("🧠 Estado:", estadoActual);
-
-if (estadoActual === "menu_principal" && texto === "1") {
-
-    await enviarTexto(numero, "🎵 Entraste al menú de Música.");
-
-    return res.sendStatus(200);
-
-}
 
 await enviarTexto(numero, menu);
 
