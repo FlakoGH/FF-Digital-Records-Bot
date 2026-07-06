@@ -97,12 +97,6 @@ if (estadoActual === "menu_principal" && texto === "1") {
         accion: "Saludo detectado"
     });
 
-const numero = req.body.entry[0].changes[0].value.contacts[0].wa_id;
-
-const estadoActual = conversaciones.obtener(numero);
-
-console.log("🧠 Estado:", estadoActual);
-
 await enviarTexto(numero, menu);
 
 conversaciones.guardar(numero, "menu_principal");
