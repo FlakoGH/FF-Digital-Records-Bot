@@ -5,6 +5,7 @@ const logger = require("./logger");
 const antiDuplicados = require("./antiDuplicados");
 const menu = require("./menus/menuPrincipal");
 const menuMusica = require("./menus/menuMusica");
+const menuRedes = require("./menus/menuRedes");
 const { enviarTexto } = require("./whatsapp/enviarTexto");
 const conversaciones = require("./estado/conversaciones");
 
@@ -89,6 +90,16 @@ conversaciones.guardar(numero, "menu_musica");
 
 }
 
+  if (estadoActual === "menu_principal" && texto === "2") {
+
+    await enviarTexto(numero, menuRedes);
+
+    conversaciones.guardar(numero, "menu_redes");
+
+    return res.sendStatus(200);
+
+}
+  
 if (estadoActual === "menu_musica" && texto === "0") {
 
     await enviarTexto(numero, menu);
