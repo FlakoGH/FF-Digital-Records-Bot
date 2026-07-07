@@ -110,6 +110,16 @@ if (estadoActual === "menu_musica" && texto === "0") {
 
 }
 
+  if (estadoActual === "menu_redes" && texto === "0") {
+
+    await enviarTexto(numero, menu);
+
+    conversaciones.guardar(numero, "menu_principal");
+
+    return res.sendStatus(200);
+
+}
+
   if (saludos.includes(texto)) {
 
     logger.nuevoMensaje({
