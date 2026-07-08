@@ -88,11 +88,13 @@ antiDuplicados.guardar(wamid);
         fecha: new Date(Number(mensajeRecibido.timestamp) * 1000).toLocaleString("es-CO"),
         tipo: mensajeRecibido.type,
         contenido: mensaje,
-        accion: "Saludo detectado"
+        accion: "Mensaje Recibido"
     });
 
 
 if (estadoActual === "menu_principal" && texto === "1") {
+  
+  console.log("📂 Menú seleccionado: Música");
 
     await enviarTexto(numero, menuMusica);
 
@@ -104,6 +106,8 @@ conversaciones.guardar(numero, "menu_musica");
 
   if (estadoActual === "menu_principal" && texto === "2") {
 
+    console.log("📂 Menú seleccionado: Redes");
+
     await enviarTexto(numero, menuRedes);
 
     conversaciones.guardar(numero, "menu_redes");
@@ -114,6 +118,8 @@ conversaciones.guardar(numero, "menu_musica");
   
 if (estadoActual === "menu_principal" && texto === "5") {
 
+  console.log("📂 Menú seleccionado: Contactos");
+
     await enviarTexto(numero, menuContacto);
 
     conversaciones.guardar(numero, "menu_contacto");
@@ -123,6 +129,8 @@ if (estadoActual === "menu_principal" && texto === "5") {
 }
 
 if (estadoActual === "menu_principal" && texto === "4") {
+
+  console.log("📂 Menú seleccionado: Releases");
 
     await enviarTexto(numero, menuReleases);
 
