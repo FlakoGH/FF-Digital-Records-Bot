@@ -81,6 +81,16 @@ if (antiDuplicados.yaProcesado(wamid)) {
 
 antiDuplicados.guardar(wamid);
 
+  logger.nuevoMensaje({
+        de: mensajeRecibido.from,
+        id: mensajeRecibido.id,
+        fecha: new Date(Number(mensajeRecibido.timestamp) * 1000).toLocaleString("es-CO"),
+        tipo: mensajeRecibido.type,
+        contenido: mensaje,
+        accion: "Saludo detectado"
+    });
+
+
 if (estadoActual === "menu_principal" && texto === "1") {
 
     await enviarTexto(numero, menuMusica);
@@ -141,15 +151,6 @@ if (estadoActual === "menu_contacto" && texto === "0") {
 }
 
   if (saludos.includes(texto)) {
-
-    logger.nuevoMensaje({
-        de: mensajeRecibido.from,
-        id: mensajeRecibido.id,
-        fecha: new Date(Number(mensajeRecibido.timestamp) * 1000).toLocaleString("es-CO"),
-        tipo: mensajeRecibido.type,
-        contenido: mensaje,
-        accion: "Saludo detectado"
-    });
 
 await enviarTexto(numero, menu);
 
