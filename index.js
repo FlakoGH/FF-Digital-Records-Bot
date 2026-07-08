@@ -142,6 +142,8 @@ if (estadoActual === "menu_principal" && texto === "4") {
 
 if (estadoActual === "menu_musica" && texto === "0") {
 
+  console.log("🏠 Regresando al menú principal");
+
     await enviarTexto(numero, menu);
 
     conversaciones.guardar(numero, "menu_principal");
@@ -152,6 +154,8 @@ if (estadoActual === "menu_musica" && texto === "0") {
 
   if (estadoActual === "menu_redes" && texto === "0") {
 
+    console.log("🏠 Regresando al menú principal");
+
     await enviarTexto(numero, menu);
 
     conversaciones.guardar(numero, "menu_principal");
@@ -160,6 +164,8 @@ if (estadoActual === "menu_musica" && texto === "0") {
 }
 
 if (estadoActual === "menu_contacto" && texto === "0") {
+
+  console.log("🏠 Regresando al menú principal");
 
     await enviarTexto(numero, menu);
 
@@ -170,6 +176,8 @@ if (estadoActual === "menu_contacto" && texto === "0") {
 }
 
 if (estadoActual === "menu_releases" && texto === "0") {
+
+  console.log("🏠 Regresando al menú principal");
 
     await enviarTexto(numero, menu);
 
