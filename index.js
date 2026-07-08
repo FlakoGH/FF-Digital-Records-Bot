@@ -8,6 +8,7 @@ const menuMusica = require("./menus/menuMusica");
 const menuRedes = require("./menus/menuRedes");
 const menuContacto = require("./menus/menuContacto");
 const { enviarTexto } = require("./whatsapp/enviarTexto");
+const menuReleases = require("./menus/menuReleases");
 const conversaciones = require("./estado/conversaciones");
 
 const app = express();
@@ -121,6 +122,16 @@ if (estadoActual === "menu_principal" && texto === "5") {
 
 }
 
+if (estadoActual === "menu_principal" && texto === "4") {
+
+    await enviarTexto(numero, menuReleases);
+
+    conversaciones.guardar(numero, "menu_releases");
+
+    return res.sendStatus(200);
+
+}
+
 if (estadoActual === "menu_musica" && texto === "0") {
 
     await enviarTexto(numero, menu);
@@ -141,6 +152,16 @@ if (estadoActual === "menu_musica" && texto === "0") {
 }
 
 if (estadoActual === "menu_contacto" && texto === "0") {
+
+    await enviarTexto(numero, menu);
+
+    conversaciones.guardar(numero, "menu_principal");
+
+    return res.sendStatus(200);
+
+}
+
+if (estadoActual === "menu_releases" && texto === "0") {
 
     await enviarTexto(numero, menu);
 
