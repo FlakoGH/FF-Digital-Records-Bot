@@ -6,10 +6,11 @@ const antiDuplicados = require("./antiDuplicados");
 const menu = require("./menus/menuPrincipal");
 const menuMusica = require("./menus/menuMusica");
 const menuRedes = require("./menus/menuRedes");
+const menuReleases = require("./menus/menuReleases");
 const menuContacto = require("./menus/menuContacto");
 const { enviarTexto } = require("./whatsapp/enviarTexto");
-const menuReleases = require("./menus/menuReleases");
 const conversaciones = require("./estado/conversaciones");
+const linksMusica = require("./links/musica");
 
 const app = express();
 app.use(express.json());
@@ -138,6 +139,18 @@ if (estadoActual === "menu_principal" && texto === "4") {
 
     return res.sendStatus(200);
 
+}
+
+  if (estadoActual === "menu_musica" && texto === "1") {
+
+    console.log("🎵 Plataforma: Spotify");
+
+    await enviarTexto(
+        numero,
+        `🎧 *Spotify*\n\n${linksMusica.spotify}`
+    );
+
+    return res.sendStatus(200);
 }
 
 if (estadoActual === "menu_musica" && texto === "0") {
