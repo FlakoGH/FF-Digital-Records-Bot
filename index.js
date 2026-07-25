@@ -153,6 +153,19 @@ if (estadoActual === "menu_principal" && texto === "4") {
     return res.sendStatus(200);
 }
 
+if (estadoActual === "menu_musica" && texto === "2") {
+
+    console.log("🎥 Plataforma seleccionada: YouTube");
+
+    await enviarTexto(
+        numero,
+        "▶️ *YouTube*\n\nhttps://music.youtube.com/@FlakoFlow_25"
+    );
+
+    return res.sendStatus(200);
+
+}
+  
 if (estadoActual === "menu_musica" && texto === "0") {
 
   console.log("🏠 Regresando al menú principal");
