@@ -165,6 +165,58 @@ if (estadoActual === "menu_musica" && texto === "2") {
     return res.sendStatus(200);
 
 }
+
+  if (estadoActual === "menu_musica" && texto === "3") {
+
+    console.log("🎧 Plataforma seleccionada: Deezer");
+
+    await enviarTexto(
+        numero,
+        "🎧 *Deezer*\n\nhttps://www.deezer.com/mx/artist/280286001"
+    );
+
+    return res.sendStatus(200);
+
+}
+
+  if (estadoActual === "menu_musica" && texto === "4") {
+
+    console.log("🍎 Plataforma seleccionada: Apple Music");
+
+    await enviarTexto(
+        numero,
+        "🍎 *Apple Music*\n\nhttps://music.apple.com/co/artist/dj-flako-flow/1765989879"
+    );
+
+    return res.sendStatus(200);
+
+}
+
+  if (estadoActual === "menu_musica" && texto === "5") {
+
+    console.log("🎵 Plataforma seleccionada: Amazon Music");
+
+    await enviarTexto(
+        numero,
+        "🎵 *Amazon Music*\n\nhttps://TU_LINK_DE_AMAZON_MUSIC"
+    );
+
+    return res.sendStatus(200);
+
+}
+
+  if (estadoActual === "menu_musica" && texto === "6") {
+
+    console.log("🌍 Plataforma seleccionada: Todas las plataformas");
+
+    await enviarTexto(
+        numero,
+        "🌍 *Todas las plataformas*\n\nhttps://beacons.ai/djflakoflow"
+    );
+
+    return res.sendStatus(200);
+
+}
   
 if (estadoActual === "menu_musica" && texto === "0") {
 
