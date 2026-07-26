@@ -1,0 +1,9 @@
+const ultimo = "https://TU_LINK_DEL_ULTIMO_RELEASE";
+const catalogo = "https://TU_LINK_DEL_CATALOGO";
+const proximos = "https://TU_LINK_DE_PROXIMOS_RELEASES";
+
+module.exports = {
+    ultimo,
+    catalogo,
+    proximos
+};
