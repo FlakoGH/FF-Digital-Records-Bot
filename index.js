@@ -11,6 +11,7 @@ const menuContacto = require("./menus/menuContacto");
 const { enviarTexto } = require("./whatsapp/enviarTexto");
 const conversaciones = require("./estado/conversaciones");
 const linksMusica = require("./links/musica");
+const linksRedes = require("./links/redes");
 
 const app = express();
 app.use(express.json());
@@ -237,6 +238,71 @@ if (texto === "99") {
     await enviarTexto(numero, menu);
 
     conversaciones.guardar(numero, "menu_principal");
+
+    return res.sendStatus(200);
+
+}
+
+  if (estadoActual === "menu_redes" && texto === "1") {
+
+    console.log("📸 Red seleccionada: Instagram");
+
+    await enviarTexto(
+        numero,
+        `📸 *Instagram*\n\n${linksRedes.instagram}`
+    );
+
+    return res.sendStatus(200);
+
+}
+
+  if (estadoActual === "menu_redes" && texto === "2") {
+
+    console.log("📘 Red seleccionada: Facebook");
+
+    await enviarTexto(
+        numero,
+        `📘 *Facebook*\n\n${linksRedes.facebook}`
+    );
+
+    return res.sendStatus(200);
+
+}
+
+  if (estadoActual === "menu_redes" && texto === "3") {
+
+    console.log("✈️ Red seleccionada: Telegram");
+
+    await enviarTexto(
+        numero,
+        `✈️ *Telegram*\n\n${linksRedes.telegram}`
+    );
+
+    return res.sendStatus(200);
+
+}
+
+  if (estadoActual === "menu_redes" && texto === "4") {
+
+    console.log("💬 Red seleccionada: Canal de WhatsApp");
+
+    await enviarTexto(
+        numero,
+        `💬 *Canal de WhatsApp*\n\n${linksRedes.canalWhatsapp}`
+    );
+
+    return res.sendStatus(200);
+
+}
+
+  if (estadoActual === "menu_redes" && texto === "5") {
+
+    console.log("🎵 Red seleccionada: TikTok");
+
+    await enviarTexto(
+        numero,
+        `🎵 *TikTok*\n\n${linksRedes.tiktok}`
+    );
 
     return res.sendStatus(200);
 
