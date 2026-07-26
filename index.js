@@ -198,7 +198,7 @@ if (estadoActual === "menu_musica" && texto === "2") {
 
     await enviarTexto(
         numero,
-        "🎵 *Amazon Music*\n\nhttps://TU_LINK_DE_AMAZON_MUSIC"
+        "🎵 *Amazon Music*\n\nhttps://music.amazon.com/es-co/artists/B0DFXBX75L/dj-flako-flow"
     );
 
     return res.sendStatus(200);
