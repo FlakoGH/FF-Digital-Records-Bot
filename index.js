@@ -230,6 +230,18 @@ if (estadoActual === "menu_musica" && texto === "0") {
 
 }
 
+if (texto === "99") {
+
+    console.log("🏠 Inicio solicitado");
+
+    await enviarTexto(numero, menu);
+
+    conversaciones.guardar(numero, "menu_principal");
+
+    return res.sendStatus(200);
+
+}
+  
   if (estadoActual === "menu_redes" && texto === "0") {
 
     console.log("🏠 Regresando al menú principal");
