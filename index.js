@@ -13,6 +13,7 @@ const conversaciones = require("./estado/conversaciones");
 const linksMusica = require("./links/musica");
 const linksRedes = require("./links/redes");
 const linksReleases = require("./links/releases");
+const linksContacto = require("./links/contacto");
 
 const app = express();
 app.use(express.json());
