@@ -1,0 +1,13 @@
+const instagram = "https://instagram.com/flakoflow_25";
+const facebook = "https://facebook.com/DJFlakoFlow";
+const telegram = "https://t.me/djflakoflowoficial";
+const canalWhatsapp = "https://whatsapp.com/channel/TU_CANAL";
+const tiktok = "https://tiktok.com/@FlakoFlow_25";
+
+module.exports = {
+    instagram,
+    facebook,
+    telegram,
+    canalWhatsapp,
+    tiktok
+};
