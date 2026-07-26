@@ -1,0 +1,9 @@
+const whatsapp = "https://wa.me/573158624292";
+const correoSello = "ffdigitalrecords@gmail.com";
+const correoArtistico = "flakoflow.04@gmail.com";
+
+module.exports = {
+    whatsapp,
+    correoSello,
+    correoArtistico
+};
