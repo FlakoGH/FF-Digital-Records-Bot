@@ -12,6 +12,7 @@ const { enviarTexto } = require("./whatsapp/enviarTexto");
 const conversaciones = require("./estado/conversaciones");
 const linksMusica = require("./links/musica");
 const linksRedes = require("./links/redes");
+const linksReleases = require("./links/releases");
 
 const app = express();
 app.use(express.json());
@@ -331,6 +332,45 @@ if (estadoActual === "menu_contacto" && texto === "0") {
 
 }
 
+if (estadoActual === "menu_releases" && texto === "1") {
+
+    console.log("💿 Release seleccionado: Último lanzamiento");
+
+    await enviarTexto(
+        numero,
+        `💿 *Último lanzamiento*\n\n${linksReleases.ultimo}`
+    );
+
+    return res.sendStatus(200);
+
+}
+
+  if (estadoActual === "menu_releases" && texto === "2") {
+
+    console.log("📀 Release seleccionado: Catálogo completo");
+
+    await enviarTexto(
+        numero,
+        `📀 *Catálogo completo*\n\n${linksReleases.catalogo}`
+    );
+
+    return res.sendStatus(200);
+
+}
+
+  if (estadoActual === "menu_releases" && texto === "3") {
+
+    console.log("🚀 Release seleccionado: Próximos lanzamientos");
+
+    await enviarTexto(
+        numero,
+        `🚀 *Próximos lanzamientos*\n\n${linksReleases.proximos}`
+    );
+
+    return res.sendStatus(200);
+
+}
+  
 if (estadoActual === "menu_releases" && texto === "0") {
 
   console.log("🏠 Regresando al menú principal");
