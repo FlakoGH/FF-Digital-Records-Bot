@@ -321,6 +321,45 @@ if (texto === "99") {
     return res.sendStatus(200);
 }
 
+  if (estadoActual === "menu_contacto" && texto === "2") {
+
+    console.log("💬 Contacto seleccionado: WhatsApp personal");
+
+    await enviarTexto(
+        numero,
+        `💬 *WhatsApp personal*\n\n${linksContacto.whatsapp}`
+    );
+
+    return res.sendStatus(200);
+
+}
+
+  if (estadoActual === "menu_contacto" && texto === "3") {
+
+    console.log("📧 Contacto seleccionado: Correo del sello");
+
+    await enviarTexto(
+        numero,
+        `📧 *Correo del sello*\n\n${linksContacto.correoSello}`
+    );
+
+    return res.sendStatus(200);
+
+}
+
+  if (estadoActual === "menu_contacto" && texto === "4") {
+
+    console.log("🎵 Contacto seleccionado: Correo artístico");
+
+    await enviarTexto(
+        numero,
+        `🎵 *Correo artístico*\n\n${linksContacto.correoArtistico}`
+    );
+
+    return res.sendStatus(200);
+
+}
+
 if (estadoActual === "menu_contacto" && texto === "0") {
 
   console.log("🏠 Regresando al menú principal");
