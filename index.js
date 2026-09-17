@@ -88,6 +88,8 @@ if (antiDuplicados.yaProcesado(wamid)) {
 
 antiDuplicados.guardar(wamid);
 
+console.log("👤 Nombre del perfil:", nombre);
+  
   logger.nuevoMensaje({
         de: mensajeRecibido.from,
         id: mensajeRecibido.id,
