@@ -73,6 +73,8 @@ const mensaje = req.body.entry?.[0]?.changes?.[0].value?.messages?.[0]?.text?.bo
 
 const numero = req.body.entry[0].changes[0].value.contacts[0].wa_id;
 
+  const nombre = req.body.entry?.[0]?.changes?.[0]?.value?.contacts?.[0]?.profile?.name || "amigo";
+
 const estadoActual = conversaciones.obtener(numero);
 
 const wamid = mensajeRecibido.id;
