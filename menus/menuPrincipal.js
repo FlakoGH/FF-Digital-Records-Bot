@@ -1,5 +1,5 @@
-const menu = `
-👋 ¡Hola!
+const menu = (nombre) => `
+👋 ¡Hola, ${nombre}!
 
 Bienvenido a *FF Digital Records* 🎶
 
