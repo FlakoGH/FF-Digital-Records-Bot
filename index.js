@@ -385,6 +385,25 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 
 }
 
+  if (estadoActual === "solicitud_distribucion_correo") {
+
+    console.log("📧 Correo recibido:", mensaje);
+
+    conversaciones.guardarDato(numero, "correo", mensaje.trim());
+
+    await enviarTexto(
+        numero,
+        `📧 Correo recibido correctamente.
+
+🎤 Ahora escríbeme tu *nombre artístico*:`
+    );
+
+    conversaciones.guardar(numero, "solicitud_distribucion_nombre");
+
+    return res.sendStatus(200);
+
+}
+
 if (estadoActual === "menu_contacto" && texto === "0") {
 
   console.log("🏠 Regresando al menú principal");
