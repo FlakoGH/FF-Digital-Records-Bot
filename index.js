@@ -47,8 +47,6 @@ app.post("/webhook", async (req, res) => {
 const estado = req.body.entry?.[0]?.changes?.[0]?.value?.statuses?.[0];
 const mensajeRecibido = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
 
-const mensajeRecibido = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
-
 const mensaje = mensajeRecibido?.text?.body;
 
 const respuestaBoton = mensajeRecibido?.interactive?.button_reply;
