@@ -318,7 +318,7 @@ if (texto === "99") {
 
     console.log("🏠 Regresando al menú principal");
 
-    await enviarTexto(numero, menu);
+    await enviarTexto(numero, menu(nombre));
 
     conversaciones.guardar(numero, "menu_principal");
 
@@ -368,7 +368,7 @@ if (estadoActual === "menu_contacto" && texto === "0") {
 
   console.log("🏠 Regresando al menú principal");
 
-    await enviarTexto(numero, menu);
+    await enviarTexto(numero, menu(nombre));
 
     conversaciones.guardar(numero, "menu_principal");
 
@@ -429,7 +429,7 @@ if (estadoActual === "menu_releases" && texto === "0") {
 
   if (saludos.includes(texto)) {
 
-await enviarTexto(numero, menu);
+await enviarTexto(numero, menu(nombre));
 
 conversaciones.guardar(numero, "menu_principal");
 
