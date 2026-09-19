@@ -8,7 +8,7 @@ const menuMusica = require("./menus/menuMusica");
 const menuRedes = require("./menus/menuRedes");
 const menuReleases = require("./menus/menuReleases");
 const menuContacto = require("./menus/menuContacto");
-const { enviarTexto } = require("./whatsapp/enviarTexto");
+const { enviarTexto, enviarBotones } = require("./whatsapp/enviarTexto");
 const conversaciones = require("./estado/conversaciones");
 const linksMusica = require("./links/musica");
 const linksRedes = require("./links/redes");
@@ -47,9 +47,17 @@ app.post("/webhook", async (req, res) => {
 const estado = req.body.entry?.[0]?.changes?.[0]?.value?.statuses?.[0];
 const mensajeRecibido = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
 
-const mensaje = req.body.entry?.[0]?.changes?.[0].value?.messages?.[0]?.text?.body;
-  
-  if (!mensaje) {
+const mensajeRecibido = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
+
+const mensaje = mensajeRecibido?.text?.body;
+
+const respuestaBoton = mensajeRecibido?.interactive?.button_reply;
+
+const botonId = respuestaBoton?.id;
+
+const texto = mensaje?.toLowerCase().trim();
+
+if (!mensajeRecibido) {
 
     if (estado) {
 
@@ -68,8 +76,6 @@ const mensaje = req.body.entry?.[0]?.changes?.[0].value?.messages?.[0]?.text?.bo
 
     return res.sendStatus(200);
 }
-  
-  const texto = mensaje.toLowerCase( ).trim( );
 
 const numero = req.body.entry[0].changes[0].value.contacts[0].wa_id;
 
