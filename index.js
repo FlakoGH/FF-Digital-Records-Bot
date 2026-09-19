@@ -408,6 +408,60 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 
 }
 
+  if (estadoActual === "solicitud_distribucion_nombre") {
+
+    console.log("🎤 Nombre artístico recibido:", mensaje);
+
+    conversaciones.guardarDato(numero, "nombre", mensaje.trim());
+
+    await enviarTexto(
+        numero,
+        `🎤 Nombre artístico recibido correctamente.
+
+📱 Ahora escríbeme tu *número de teléfono*:`
+    );
+
+    conversaciones.guardar(numero, "solicitud_distribucion_telefono");
+
+    return res.sendStatus(200);
+
+}
+
+  if (estadoActual === "solicitud_distribucion_telefono") {
+
+    console.log("📱 Teléfono recibido:", mensaje);
+
+    conversaciones.guardarDato(numero, "telefono", mensaje.trim());
+
+    await enviarBotones(
+        numero,
+        `📱 Teléfono recibido correctamente.
+
+🎵 ¿Has lanzado música anteriormente?`,
+        [
+            {
+                type: "reply",
+                reply: {
+                    id: "lanzamientos_si",
+                    title: "✅ Sí"
+                }
+            },
+            {
+                type: "reply",
+                reply: {
+                    id: "lanzamientos_no",
+                    title: "❌ No"
+                }
+            }
+        ]
+    );
+
+    conversaciones.guardar(numero, "solicitud_distribucion_lanzamientos");
+
+    return res.sendStatus(200);
+
+}
+
 if (estadoActual === "menu_contacto" && texto === "0") {
 
   console.log("🏠 Regresando al menú principal");
