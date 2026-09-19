@@ -518,11 +518,11 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
         numero,
         `📋 *Resumen de tu solicitud de distribución*
 
-📧 Correo: ${correo}
-🎤 Nombre artístico: ${nombre}
-📱 Teléfono: ${telefono}
-🎵 ¿Ha lanzado música antes?: ${haLanzado}
-📝 Información adicional: ${infoAdicional}
+📧 *Correo:* ${correo}
+🎤 *Nombre artístico:* ${nombre}
+📱 *Teléfono:* ${telefono}
+🎵 *¿Ha lanzado música antes?:* ${haLanzado}
+📝 *Información adicional:* ${infoAdicional}
 
 ¿Los datos son correctos?`
     );
