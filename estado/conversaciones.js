@@ -1,4 +1,5 @@
 const conversaciones = {};
+const datos = {};
 
 function obtener(numero) {
 
@@ -12,9 +13,27 @@ function guardar(numero, estado) {
 
 }
 
+function guardarDato(numero, campo, valor) {
+
+    if (!datos[numero]) {
+        datos[numero] = {};
+    }
+
+    datos[numero][campo] = valor;
+
+}
+
+function obtenerDato(numero, campo) {
+
+    return datos[numero]?.[campo];
+
+}
+
 module.exports = {
 
     obtener,
-    guardar
+    guardar,
+    guardarDato,
+    obtenerDato
 
 };
