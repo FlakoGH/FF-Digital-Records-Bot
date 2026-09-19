@@ -470,24 +470,35 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 
         conversaciones.guardarDato(numero, "ha_lanzado", "Sí");
 
+        await enviarTexto(
+            numero,
+            `🎵 Perfecto.
+
+📋 Ahora selecciona dónde has lanzado música anteriormente.`
+        );
+
+        conversaciones.guardar(numero, "solicitud_distribucion_plataformas");
+
+        return res.sendStatus(200);
+
     }
 
     if (botonId === "lanzamientos_no") {
 
         conversaciones.guardarDato(numero, "ha_lanzado", "No");
 
-    }
-
-    await enviarTexto(
-        numero,
-        `🎵 Perfecto.
+        await enviarTexto(
+            numero,
+            `🎵 Perfecto.
 
 📝 Ahora cuéntame cualquier información adicional que quieras incluir en tu solicitud de distribución.`
-    );
+        );
 
-    conversaciones.guardar(numero, "solicitud_distribucion_info");
+        conversaciones.guardar(numero, "solicitud_distribucion_info");
 
-    return res.sendStatus(200);
+        return res.sendStatus(200);
+
+    }
 
 }
 
