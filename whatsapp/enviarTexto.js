@@ -38,8 +38,55 @@ async function enviarTexto(numero, mensaje) {
 
 }
 
+
+async function enviarBotones(numero, mensaje, botones) {
+
+    try {
+
+        await axios.post(
+
+            `https://graph.facebook.com/v25.0/${process.env.PHONE_NUMBER_ID}/messages`,
+
+            {
+                messaging_product: "whatsapp",
+                to: numero,
+                type: "interactive",
+                interactive: {
+                    type: "button",
+                    body: {
+                        text: mensaje
+                    },
+                    action: {
+                        buttons: botones
+                    }
+                }
+            },
+
+            {
+                headers: {
+                    Authorization: `Bearer ${process.env.WHATSAPP_TOKEN}`,
+                    "Content-Type": "application/json"
+                }
+            }
+
+        );
+
+    } catch (error) {
+
+        console.error("❌ Error enviando botones:");
+
+        console.error(error.response?.data || error.message);
+
+        throw error;
+
+    }
+
+}
+
+
 module.exports = {
 
-    enviarTexto
+    enviarTexto,
+    enviarBotones
 
 };
