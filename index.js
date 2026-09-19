@@ -491,6 +491,37 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 
 }
 
+  if (estadoActual === "solicitud_distribucion_info") {
+
+    console.log("📝 Información adicional recibida:", mensaje);
+
+    conversaciones.guardarDato(numero, "info_adicional", mensaje.trim());
+
+    const correo = conversaciones.obtenerDato(numero, "correo");
+    const nombre = conversaciones.obtenerDato(numero, "nombre");
+    const telefono = conversaciones.obtenerDato(numero, "telefono");
+    const haLanzado = conversaciones.obtenerDato(numero, "ha_lanzado");
+    const infoAdicional = conversaciones.obtenerDato(numero, "info_adicional");
+
+    await enviarTexto(
+        numero,
+        `📋 *Resumen de tu solicitud de distribución*
+
+📧 Correo: ${correo}
+🎤 Nombre artístico: ${nombre}
+📱 Teléfono: ${telefono}
+🎵 ¿Ha lanzado música antes?: ${haLanzado}
+📝 Información adicional: ${infoAdicional}
+
+¿Los datos son correctos?`
+    );
+
+    conversaciones.guardar(numero, "solicitud_distribucion_confirmacion");
+
+    return res.sendStatus(200);
+
+}
+
 if (estadoActual === "menu_contacto" && texto === "0") {
 
   console.log("🏠 Regresando al menú principal");
