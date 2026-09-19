@@ -364,6 +364,27 @@ if (texto === "99") {
 
 }
 
+  if (estadoActual === "menu_contacto" && texto === "5") {
+
+    console.log("📋 Contacto seleccionado: Solicitar distribución");
+
+    await enviarTexto(
+        numero,
+        `📋 *Solicitud de distribución*
+
+Perfecto, ${nombre}. 🎵
+
+Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos.
+
+📧 Primero, escríbeme tu correo electrónico:`
+    );
+
+    conversaciones.guardar(numero, "solicitud_distribucion_correo");
+
+    return res.sendStatus(200);
+
+}
+
 if (estadoActual === "menu_contacto" && texto === "0") {
 
   console.log("🏠 Regresando al menú principal");
