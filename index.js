@@ -462,6 +462,35 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 
 }
 
+  if (estadoActual === "solicitud_distribucion_lanzamientos") {
+
+    console.log("🎵 Respuesta sobre lanzamientos:", botonId);
+
+    if (botonId === "lanzamientos_si") {
+
+        conversaciones.guardarDato(numero, "ha_lanzado", "Sí");
+
+    }
+
+    if (botonId === "lanzamientos_no") {
+
+        conversaciones.guardarDato(numero, "ha_lanzado", "No");
+
+    }
+
+    await enviarTexto(
+        numero,
+        `🎵 Perfecto.
+
+📝 Ahora cuéntame cualquier información adicional que quieras incluir en tu solicitud de distribución.`
+    );
+
+    conversaciones.guardar(numero, "solicitud_distribucion_info");
+
+    return res.sendStatus(200);
+
+}
+
 if (estadoActual === "menu_contacto" && texto === "0") {
 
   console.log("🏠 Regresando al menú principal");
