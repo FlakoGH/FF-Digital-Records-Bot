@@ -472,59 +472,79 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
         conversaciones.guardarDato(numero, "ha_lanzado", "Sí");
 
         await enviarLista(
-            numero,
-            `🎵 Perfecto.
+    numero,
+    `🎵 Perfecto.
 
 📋 ¿Con qué distribuidora has lanzado música anteriormente?`,
-            "Elegir distribuidora",
-            [
+    "Elegir distribuidora",
+    [
+        {
+            title: "Distribuidoras principales",
+            rows: [
                 {
-                    title: "Distribuidoras",
-                    rows: [
-                        {
-                            id: "distro_onerpm",
-                            title: "OneRPM"
-                        },
-                        {
-                            id: "distro_distrokid",
-                            title: "DistroKid"
-                        },
-                        {
-                            id: "distro_symphonic",
-                            title: "Symphonic"
-                        },
-                        {
-                            id: "distro_naeku",
-                            title: "Naeku"
-                        },
-                        {
-                            id: "distro_tunecore",
-                            title: "TuneCore"
-                        },
-                        {
-                            id: "distro_cdbaby",
-                            title: "CD Baby"
-                        },
-                        {
-                            id: "distro_ditto",
-                            title: "Ditto"
-                        },
-                        {
-                            id: "distro_amuse",
-                            title: "Amuse"
-                        },
-                        {
-                            id: "distro_believe",
-                            title: "Believe"
-                        },
-                        {
-                            id: "distro_otro",
-                            title: "Otra distribuidora"
-                        }
-                    ]
+                    id: "distro_onerpm",
+                    title: "OneRPM",
+                    description: "Distribución musical"
+                },
+                {
+                    id: "distro_distrokid",
+                    title: "DistroKid",
+                    description: "Distribución independiente"
+                },
+                {
+                    id: "distro_symphonic",
+                    title: "Symphonic",
+                    description: "Distribución y servicios"
+                },
+                {
+                    id: "distro_naeku",
+                    title: "Naeku",
+                    description: "Distribución musical"
                 }
             ]
-        );
+        },
+        {
+            title: "Más distribuidoras",
+            rows: [
+                {
+                    id: "distro_tunecore",
+                    title: "TuneCore",
+                    description: "Distribución digital"
+                },
+                {
+                    id: "distro_cdbaby",
+                    title: "CD Baby",
+                    description: "Distribución para artistas"
+                },
+                {
+                    id: "distro_ditto",
+                    title: "Ditto",
+                    description: "Distribución independiente"
+                },
+                {
+                    id: "distro_amuse",
+                    title: "Amuse",
+                    description: "Distribución digital"
+                },
+                {
+                    id: "distro_believe",
+                    title: "Believe",
+                    description: "Servicios para artistas"
+                }
+            ]
+        },
+        {
+            title: "Otra opción",
+            rows: [
+                {
+                    id: "distro_otro",
+                    title: "Otra distribuidora",
+                    description: "Escribir el nombre manualmente"
+                }
+            ]
+        }
+    ]
+);
 
         conversaciones.guardar(numero, "solicitud_distribucion_plataformas");
 
