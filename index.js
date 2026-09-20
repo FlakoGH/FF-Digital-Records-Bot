@@ -676,56 +676,42 @@ if (estadoActual === "solicitud_distribucion_plataformas") {
 
     if (botonId === "solicitud_confirmar") {
 
-        const correo = conversaciones.obtenerDato(numero, "correo");
-        const nombre = conversaciones.obtenerDato(numero, "nombre");
-        const telefono = conversaciones.obtenerDato(numero, "telefono");
-        const haLanzado = conversaciones.obtenerDato(numero, "ha_lanzado");
-        const distribuidoraAnterior = conversaciones.obtenerDato(
-            numero,
-            "distribuidora_anterior"
-        );
-        const infoAdicional = conversaciones.obtenerDato(
-            numero,
-            "info_adicional"
-        );
-
-        console.log("📋 Solicitud confirmada:");
-        console.log("📧 Correo:", correo);
-        console.log("🎤 Nombre artístico:", nombre);
-        console.log("📱 Teléfono:", telefono);
-        console.log("🎵 ¿Ha lanzado?:", haLanzado);
-        console.log("🏢 Distribuidora anterior:", distribuidoraAnterior);
-        console.log("📝 Información adicional:", infoAdicional);
-
         await enviarTexto(
             numero,
             `✅ *Solicitud confirmada*
 
 Gracias, ${nombre}. 🎵
 
-Hemos recibido correctamente tu solicitud de distribución.
+Tu solicitud de distribución fue registrada correctamente.
 
-📋 *Datos registrados:*
-
-📧 *Correo:* ${correo}
-🎤 *Nombre artístico:* ${nombre}
-📱 *Teléfono:* ${telefono}
-🎵 *¿Ha lanzado música antes?:* ${haLanzado}
-🏢 *Distribuidora anterior:* ${distribuidoraAnterior}
-📝 *Información adicional:* ${infoAdicional}
-
-📨 Tu solicitud será revisada y posteriormente nos pondremos en contacto contigo.
+📨 Será revisada por nuestro equipo y posteriormente nos pondremos en contacto contigo.
 
 ¡Gracias por confiar en *FF Digital Records*! 🎶`
         );
 
-        conversaciones.guardar(numero, "solicitud_distribucion_completada");
+        await enviarBotones(
+            numero,
+            `🏠 ¿Qué quieres hacer ahora?`,
+            [
+                {
+                    type: "reply",
+                    reply: {
+                        id: "volver_inicio",
+                        title: "🏠 Volver al inicio"
+                    }
+                }
+            ]
+        );
+
+        conversaciones.guardar(
+            numero,
+            "solicitud_distribucion_completada"
+        );
 
         return res.sendStatus(200);
     }
 
 }
-
 if (estadoActual === "menu_contacto" && texto === "0") {
 
   console.log("🏠 Regresando al menú principal");
