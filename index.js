@@ -479,7 +479,7 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
     "Elegir distribuidora",
     [
         {
-            title: "Distribuidoras principales",
+            title: "Distros principales",
             rows: [
                 {
                     id: "distro_onerpm",
