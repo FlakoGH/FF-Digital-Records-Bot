@@ -566,14 +566,17 @@ if (estadoActual === "solicitud_distribucion_lanzamientos") {
 📝 Ahora cuéntame cualquier información adicional que quieras incluir en tu solicitud de distribución.`
     );
 
-    conversaciones.guardar(
+        conversaciones.guardar(
         numero,
         "solicitud_distribucion_info"
     );
 
     return res.sendStatus(200);
+    }
 }
 
+
+if (estadoActual === "solicitud_distribucion_plataformas") {
 
 if (estadoActual === "solicitud_distribucion_plataformas") {
 
