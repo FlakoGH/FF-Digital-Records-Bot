@@ -463,7 +463,7 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 
 }
 
-  if (estadoActual === "solicitud_distribucion_lanzamientos") {
+if (estadoActual === "solicitud_distribucion_lanzamientos") {
 
     console.log("🎵 Respuesta sobre lanzamientos:", botonId);
 
@@ -472,86 +472,111 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
         conversaciones.guardarDato(numero, "ha_lanzado", "Sí");
 
         await enviarLista(
-    numero,
-    `🎵 Perfecto.
+            numero,
+            `🎵 Perfecto.
 
 📋 ¿Con qué distribuidora has lanzado música anteriormente?`,
-    "Elegir distribuidora",
-    [
-        {
-            title: "Distros principales",
-            rows: [
+            "Elegir distribuidora",
+            [
                 {
-                    id: "distro_onerpm",
-                    title: "OneRPM",
-                    description: "Distribución musical"
+                    title: "Distros principales",
+                    rows: [
+                        {
+                            id: "distro_onerpm",
+                            title: "OneRPM",
+                            description: "Distribución musical"
+                        },
+                        {
+                            id: "distro_distrokid",
+                            title: "DistroKid",
+                            description: "Distribución independiente"
+                        },
+                        {
+                            id: "distro_symphonic",
+                            title: "Symphonic",
+                            description: "Distribución y servicios"
+                        },
+                        {
+                            id: "distro_naeku",
+                            title: "Naeku",
+                            description: "Distribución musical"
+                        }
+                    ]
                 },
                 {
-                    id: "distro_distrokid",
-                    title: "DistroKid",
-                    description: "Distribución independiente"
+                    title: "Más distribuidoras",
+                    rows: [
+                        {
+                            id: "distro_tunecore",
+                            title: "TuneCore",
+                            description: "Distribución digital"
+                        },
+                        {
+                            id: "distro_cdbaby",
+                            title: "CD Baby",
+                            description: "Distribución para artistas"
+                        },
+                        {
+                            id: "distro_ditto",
+                            title: "Ditto",
+                            description: "Distribución independiente"
+                        },
+                        {
+                            id: "distro_amuse",
+                            title: "Amuse",
+                            description: "Distribución digital"
+                        },
+                        {
+                            id: "distro_believe",
+                            title: "Believe",
+                            description: "Servicios para artistas"
+                        }
+                    ]
                 },
                 {
-                    id: "distro_symphonic",
-                    title: "Symphonic",
-                    description: "Distribución y servicios"
-                },
-                {
-                    id: "distro_naeku",
-                    title: "Naeku",
-                    description: "Distribución musical"
+                    title: "Otra opción",
+                    rows: [
+                        {
+                            id: "distro_otro",
+                            title: "Otra distribuidora",
+                            description: "Escribir el nombre manualmente"
+                        }
+                    ]
                 }
             ]
-        },
-        {
-            title: "Más distribuidoras",
-            rows: [
-                {
-                    id: "distro_tunecore",
-                    title: "TuneCore",
-                    description: "Distribución digital"
-                },
-                {
-                    id: "distro_cdbaby",
-                    title: "CD Baby",
-                    description: "Distribución para artistas"
-                },
-                {
-                    id: "distro_ditto",
-                    title: "Ditto",
-                    description: "Distribución independiente"
-                },
-                {
-                    id: "distro_amuse",
-                    title: "Amuse",
-                    description: "Distribución digital"
-                },
-                {
-                    id: "distro_believe",
-                    title: "Believe",
-                    description: "Servicios para artistas"
-                }
-            ]
-        },
-        {
-            title: "Otra opción",
-            rows: [
-                {
-                    id: "distro_otro",
-                    title: "Otra distribuidora",
-                    description: "Escribir el nombre manualmente"
-                }
-            ]
-        }
-    ]
-);
+        );
 
-        conversaciones.guardar(numero, "solicitud_distribucion_plataformas");
+        conversaciones.guardar(
+            numero,
+            "solicitud_distribucion_plataformas"
+        );
 
         return res.sendStatus(200);
     }
 
-    if (estadoActual === "solicitud_distribucion_plataformas") {
+    if (botonId === "lanzamientos_no") {
+
+        conversaciones.guardarDato(numero, "ha_lanzado", "No");
+
+        await enviarTexto(
+            numero,
+            `🎵 Perfecto.
+
+📝 Ahora cuéntame cualquier información adicional que quieras incluir en tu solicitud de distribución.`
+        );
+
+        conversaciones.guardar(
+            numero,
+            "solicitud_distribucion_info"
+        );
+
+        return res.sendStatus(200);
+    }
+
+}
+
+
+if (estadoActual === "solicitud_distribucion_plataformas") {
 
     console.log("🏢 Distribuidora seleccionada:", botonId);
 
@@ -587,29 +612,14 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 📝 Ahora cuéntame cualquier información adicional que quieras incluir en tu solicitud de distribución.`
     );
 
-    conversaciones.guardar(numero, "solicitud_distribucion_info");
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_info"
+    );
 
     return res.sendStatus(200);
 }
-
-    if (botonId === "lanzamientos_no") {
-
-        conversaciones.guardarDato(numero, "ha_lanzado", "No");
-
-        await enviarTexto(
-            numero,
-            `🎵 Perfecto.
-
-📝 Ahora cuéntame cualquier información adicional que quieras incluir en tu solicitud de distribución.`
-        );
-
-        conversaciones.guardar(numero, "solicitud_distribucion_info");
-
-        return res.sendStatus(200);
-    }
-
-}
-
+  
   if (estadoActual === "solicitud_distribucion_info") {
 
     console.log("📝 Información adicional recibida:", mensaje);
