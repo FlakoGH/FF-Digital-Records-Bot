@@ -470,17 +470,64 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 
         conversaciones.guardarDato(numero, "ha_lanzado", "Sí");
 
-        await enviarTexto(
+        await enviarLista(
             numero,
             `🎵 Perfecto.
 
-📋 Ahora selecciona dónde has lanzado música anteriormente.`
+📋 ¿Con qué distribuidora has lanzado música anteriormente?`,
+            "Seleccionar distribuidora",
+            [
+                {
+                    title: "Distribuidoras",
+                    rows: [
+                        {
+                            id: "distro_onerpm",
+                            title: "OneRPM"
+                        },
+                        {
+                            id: "distro_distrokid",
+                            title: "DistroKid"
+                        },
+                        {
+                            id: "distro_symphonic",
+                            title: "Symphonic"
+                        },
+                        {
+                            id: "distro_naeku",
+                            title: "Naeku"
+                        },
+                        {
+                            id: "distro_tunecore",
+                            title: "TuneCore"
+                        },
+                        {
+                            id: "distro_cdbaby",
+                            title: "CD Baby"
+                        },
+                        {
+                            id: "distro_ditto",
+                            title: "Ditto"
+                        },
+                        {
+                            id: "distro_amuse",
+                            title: "Amuse"
+                        },
+                        {
+                            id: "distro_believe",
+                            title: "Believe"
+                        },
+                        {
+                            id: "distro_otro",
+                            title: "Otra distribuidora"
+                        }
+                    ]
+                }
+            ]
         );
 
         conversaciones.guardar(numero, "solicitud_distribucion_plataformas");
 
         return res.sendStatus(200);
-
     }
 
     if (botonId === "lanzamientos_no") {
@@ -497,7 +544,6 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
         conversaciones.guardar(numero, "solicitud_distribucion_info");
 
         return res.sendStatus(200);
-
     }
 
 }
