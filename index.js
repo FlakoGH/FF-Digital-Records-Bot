@@ -50,6 +50,7 @@ const mensajeRecibido = req.body.entry?.[0]?.changes?.[0]?.value?.messages?.[0];
 const mensaje = mensajeRecibido?.text?.body;
 
 const respuestaBoton = mensajeRecibido?.interactive?.button_reply;
+const respuestaLista = mensajeRecibido?.interactive?.list_reply;
 
 const botonId = respuestaBoton?.id;
 
@@ -529,6 +530,47 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 
         return res.sendStatus(200);
     }
+
+    if (estadoActual === "solicitud_distribucion_plataformas") {
+
+    console.log("🏢 Distribuidora seleccionada:", botonId);
+
+    const distribuidoras = {
+        distro_onerpm: "OneRPM",
+        distro_distrokid: "DistroKid",
+        distro_symphonic: "Symphonic",
+        distro_naeku: "Naeku",
+        distro_tunecore: "TuneCore",
+        distro_cdbaby: "CD Baby",
+        distro_ditto: "Ditto",
+        distro_amuse: "Amuse",
+        distro_believe: "Believe",
+        distro_otro: "Otra distribuidora"
+    };
+
+    const distribuidoraSeleccionada = distribuidoras[botonId];
+
+    if (!distribuidoraSeleccionada) {
+        return res.sendStatus(200);
+    }
+
+    conversaciones.guardarDato(
+        numero,
+        "distribuidora_anterior",
+        distribuidoraSeleccionada
+    );
+
+    await enviarTexto(
+        numero,
+        `🏢 Distribuidora seleccionada: *${distribuidoraSeleccionada}*
+
+📝 Ahora cuéntame cualquier información adicional que quieras incluir en tu solicitud de distribución.`
+    );
+
+    conversaciones.guardar(numero, "solicitud_distribucion_info");
+
+    return res.sendStatus(200);
+}
 
     if (botonId === "lanzamientos_no") {
 
