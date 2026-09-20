@@ -712,6 +712,28 @@ Tu solicitud de distribución fue registrada correctamente.
     }
 
 }
+
+if (estadoActual === "solicitud_distribucion_completada") {
+
+    console.log("🏠 Volver al inicio seleccionado:", botonId);
+
+    if (botonId === "volver_inicio") {
+
+        await enviarTexto(
+            numero,
+            menu(nombre)
+        );
+
+        conversaciones.guardar(
+            numero,
+            "menu_principal"
+        );
+
+        return res.sendStatus(200);
+    }
+
+}
+  
 if (estadoActual === "menu_contacto" && texto === "0") {
 
   console.log("🏠 Regresando al menú principal");
