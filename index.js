@@ -575,9 +575,6 @@ if (estadoActual === "solicitud_distribucion_lanzamientos") {
     }
 }
 
-
-if (estadoActual === "solicitud_distribucion_plataformas") {
-
 if (estadoActual === "solicitud_distribucion_plataformas") {
 
     console.log("🏢 Distribuidora seleccionada:", botonId);
