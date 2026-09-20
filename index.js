@@ -52,7 +52,7 @@ const mensaje = mensajeRecibido?.text?.body;
 const respuestaBoton = mensajeRecibido?.interactive?.button_reply;
 const respuestaLista = mensajeRecibido?.interactive?.list_reply;
 
-const botonId = respuestaBoton?.id;
+const botonId = respuestaBoton?.id || respuestaLista?.id;
 
 const texto = mensaje?.toLowerCase().trim();
 
