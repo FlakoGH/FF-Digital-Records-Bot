@@ -630,6 +630,10 @@ if (estadoActual === "solicitud_distribucion_plataformas") {
     const nombre = conversaciones.obtenerDato(numero, "nombre");
     const telefono = conversaciones.obtenerDato(numero, "telefono");
     const haLanzado = conversaciones.obtenerDato(numero, "ha_lanzado");
+    const distribuidoraAnterior = conversaciones.obtenerDato(
+    numero,
+    "distribuidora_anterior"
+);
     const infoAdicional = conversaciones.obtenerDato(numero, "info_adicional");
 
     await enviarTexto(
@@ -640,6 +644,7 @@ if (estadoActual === "solicitud_distribucion_plataformas") {
 🎤 *Nombre artístico:* ${nombre}
 📱 *Teléfono:* ${telefono}
 🎵 *¿Ha lanzado música antes?:* ${haLanzado}
+🏢 *Distribuidora anterior:* ${distribuidoraAnterior}
 📝 *Información adicional:* ${infoAdicional}
 
 ¿Los datos son correctos?`
