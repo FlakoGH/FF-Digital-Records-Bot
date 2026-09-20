@@ -476,7 +476,7 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
             `🎵 Perfecto.
 
 📋 ¿Con qué distribuidora has lanzado música anteriormente?`,
-            "Seleccionar distribuidora",
+            "Elegir distribuidora",
             [
                 {
                     title: "Distribuidoras",
