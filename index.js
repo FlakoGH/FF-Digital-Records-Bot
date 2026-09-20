@@ -556,23 +556,22 @@ if (estadoActual === "solicitud_distribucion_lanzamientos") {
 
     if (botonId === "lanzamientos_no") {
 
-        conversaciones.guardarDato(numero, "ha_lanzado", "No");
+    conversaciones.guardarDato(numero, "ha_lanzado", "No");
+    conversaciones.guardarDato(numero, "distribuidora_anterior", "No aplica");
 
-        await enviarTexto(
-            numero,
-            `🎵 Perfecto.
+    await enviarTexto(
+        numero,
+        `🎵 Perfecto.
 
 📝 Ahora cuéntame cualquier información adicional que quieras incluir en tu solicitud de distribución.`
-        );
+    );
 
-        conversaciones.guardar(
-            numero,
-            "solicitud_distribucion_info"
-        );
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_info"
+    );
 
-        return res.sendStatus(200);
-    }
-
+    return res.sendStatus(200);
 }
 
 
@@ -636,9 +635,9 @@ if (estadoActual === "solicitud_distribucion_plataformas") {
 );
     const infoAdicional = conversaciones.obtenerDato(numero, "info_adicional");
 
-    await enviarTexto(
-        numero,
-        `📋 *Resumen de tu solicitud de distribución*
+    await enviarBotones(
+    numero,
+    `📋 *Resumen de tu solicitud de distribución*
 
 📧 *Correo:* ${correo}
 🎤 *Nombre artístico:* ${nombre}
@@ -647,9 +646,24 @@ if (estadoActual === "solicitud_distribucion_plataformas") {
 🏢 *Distribuidora anterior:* ${distribuidoraAnterior}
 📝 *Información adicional:* ${infoAdicional}
 
-¿Los datos son correctos?`
-    );
-
+¿Los datos son correctos?`,
+    [
+        {
+            type: "reply",
+            reply: {
+                id: "solicitud_confirmar",
+                title: "✅ Confirmar"
+            }
+        },
+        {
+            type: "reply",
+            reply: {
+                id: "solicitud_editar",
+                title: "✏️ Editar"
+            }
+        }
+    ]
+);
     conversaciones.guardar(numero, "solicitud_distribucion_confirmacion");
 
     return res.sendStatus(200);
