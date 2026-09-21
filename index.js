@@ -670,7 +670,7 @@ if (estadoActual === "solicitud_distribucion_plataformas") {
 
 }
 
-  if (estadoActual === "solicitud_distribucion_confirmacion") {
+ if (estadoActual === "solicitud_distribucion_confirmacion") {
 
     console.log("📋 Confirmación de solicitud:", botonId);
 
@@ -706,6 +706,34 @@ Tu solicitud de distribución fue registrada correctamente.
         conversaciones.guardar(
             numero,
             "solicitud_distribucion_completada"
+        );
+
+        return res.sendStatus(200);
+    }
+
+    if (botonId === "solicitud_editar") {
+
+        console.log("✏️ Editar solicitud seleccionado");
+
+        await enviarTexto(
+            numero,
+            `✏️ *Editar solicitud*
+
+¿Qué dato quieres modificar?
+
+1️⃣ Correo
+2️⃣ Nombre artístico
+3️⃣ Número de teléfono
+4️⃣ ¿Has lanzado música?
+5️⃣ Distribuidora anterior
+6️⃣ Información adicional
+
+0️⃣ Cancelar`
+        );
+
+        conversaciones.guardar(
+            numero,
+            "solicitud_distribucion_editar"
         );
 
         return res.sendStatus(200);
