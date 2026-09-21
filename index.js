@@ -818,6 +818,32 @@ ${nombreActual}
 
     return res.sendStatus(200);
 }
+
+if (texto === "3") {
+
+    const telefonoActual = conversaciones.obtenerDato(
+        numero,
+        "telefono"
+    );
+
+    await enviarTexto(
+        numero,
+        `📱 *Editar número de teléfono*
+
+📌 Número actual:
+${telefonoActual}
+
+✏️ Escríbeme tu nuevo número de teléfono:`
+    );
+
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_editar_telefono"
+    );
+
+    return res.sendStatus(200);
+}
+  
 }
   
   if (estadoActual === "solicitud_distribucion_editar_nombre") {
@@ -866,7 +892,53 @@ ${mensaje.trim()}`
 
     return res.sendStatus(200);
 }
-  
+
+  if (estadoActual === "solicitud_distribucion_editar_telefono") {
+
+    console.log("📱 Nuevo teléfono recibido:", mensaje);
+
+    conversaciones.guardarDato(
+        numero,
+        "telefono",
+        mensaje.trim()
+    );
+
+    await enviarTexto(
+        numero,
+        `✅ *Número de teléfono actualizado*
+
+📱 Nuevo número:
+${mensaje.trim()}`
+    );
+
+    await enviarBotones(
+        numero,
+        `📋 ¿Qué quieres hacer ahora?`,
+        [
+            {
+                type: "reply",
+                reply: {
+                    id: "solicitud_seguir_editando",
+                    title: "✏️ Seguir editando"
+                }
+            },
+            {
+                type: "reply",
+                reply: {
+                    id: "solicitud_continuar",
+                    title: "➡️ Continuar"
+                }
+            }
+        ]
+    );
+
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_editar"
+    );
+
+    return res.sendStatus(200);
+}
   
   if (botonId === "solicitud_continuar") {
 
