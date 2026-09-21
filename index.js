@@ -818,8 +818,9 @@ ${nombreActual}
 
     return res.sendStatus(200);
 }
-
-if (estadoActual === "solicitud_distribucion_editar_nombre") {
+}
+  
+  if (estadoActual === "solicitud_distribucion_editar_nombre") {
 
     console.log("🎤 Nuevo nombre artístico recibido:", mensaje);
 
@@ -865,6 +866,7 @@ ${mensaje.trim()}`
 
     return res.sendStatus(200);
 }
+  
   
   if (botonId === "solicitud_continuar") {
 
