@@ -843,6 +843,47 @@ ${telefonoActual}
 
     return res.sendStatus(200);
 }
+
+if (texto === "4") {
+
+    const haLanzadoActual = conversaciones.obtenerDato(
+        numero,
+        "ha_lanzado"
+    );
+
+    await enviarBotones(
+        numero,
+        `🎵 *Editar lanzamientos anteriores*
+
+📌 Respuesta actual:
+${haLanzadoActual}
+
+¿Has lanzado música anteriormente?`,
+        [
+            {
+                type: "reply",
+                reply: {
+                    id: "editar_lanzamientos_si",
+                    title: "✅ Sí"
+                }
+            },
+            {
+                type: "reply",
+                reply: {
+                    id: "editar_lanzamientos_no",
+                    title: "❌ No"
+                }
+            }
+        ]
+    );
+
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_editar_lanzamientos"
+    );
+
+    return res.sendStatus(200);
+}
   
 }
   
@@ -909,6 +950,113 @@ ${mensaje.trim()}`
 
 📱 Nuevo número:
 ${mensaje.trim()}`
+    );
+
+    await enviarBotones(
+        numero,
+        `📋 ¿Qué quieres hacer ahora?`,
+        [
+            {
+                type: "reply",
+                reply: {
+                    id: "solicitud_seguir_editando",
+                    title: "✏️ Seguir editando"
+                }
+            },
+            {
+                type: "reply",
+                reply: {
+                    id: "solicitud_continuar",
+                    title: "➡️ Continuar"
+                }
+            }
+        ]
+    );
+
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_editar"
+    );
+
+    return res.sendStatus(200);
+}
+
+  if (texto === "4") {
+
+    const haLanzadoActual = conversaciones.obtenerDato(
+        numero,
+        "ha_lanzado"
+    );
+
+    await enviarBotones(
+        numero,
+        `🎵 *Editar lanzamientos anteriores*
+
+📌 Respuesta actual:
+${haLanzadoActual}
+
+¿Has lanzado música anteriormente?`,
+        [
+            {
+                type: "reply",
+                reply: {
+                    id: "editar_lanzamientos_si",
+                    title: "✅ Sí"
+                }
+            },
+            {
+                type: "reply",
+                reply: {
+                    id: "editar_lanzamientos_no",
+                    title: "❌ No"
+                }
+            }
+        ]
+    );
+
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_editar_lanzamientos"
+    );
+
+    return res.sendStatus(200);
+}
+
+if (estadoActual === "solicitud_distribucion_editar_lanzamientos_distro") {
+
+    console.log("🏢 Nueva distribuidora seleccionada:", botonId);
+
+    const distribuidoras = {
+        distro_onerpm: "OneRPM",
+        distro_distrokid: "DistroKid",
+        distro_symphonic: "Symphonic",
+        distro_naeku: "Naeku",
+        distro_tunecore: "TuneCore",
+        distro_cdbaby: "CD Baby",
+        distro_ditto: "Ditto",
+        distro_amuse: "Amuse",
+        distro_believe: "Believe",
+        distro_otro: "Otra distribuidora"
+    };
+
+    const distribuidoraSeleccionada = distribuidoras[botonId];
+
+    if (!distribuidoraSeleccionada) {
+        return res.sendStatus(200);
+    }
+
+    conversaciones.guardarDato(
+        numero,
+        "distribuidora_anterior",
+        distribuidoraSeleccionada
+    );
+
+    await enviarTexto(
+        numero,
+        `✅ *Distribuidora actualizada*
+
+🏢 Nueva distribuidora:
+${distribuidoraSeleccionada}`
     );
 
     await enviarBotones(
