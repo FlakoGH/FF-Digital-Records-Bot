@@ -794,6 +794,78 @@ ${correoActual}
         return res.sendStatus(200);
     }
 
+  if (texto === "2") {
+
+    const nombreActual = conversaciones.obtenerDato(
+        numero,
+        "nombre"
+    );
+
+    await enviarTexto(
+        numero,
+        `🎤 *Editar nombre artístico*
+
+📌 Nombre actual:
+${nombreActual}
+
+✏️ Escríbeme tu nuevo nombre artístico:`
+    );
+
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_editar_nombre"
+    );
+
+    return res.sendStatus(200);
+}
+
+if (estadoActual === "solicitud_distribucion_editar_nombre") {
+
+    console.log("🎤 Nuevo nombre artístico recibido:", mensaje);
+
+    conversaciones.guardarDato(
+        numero,
+        "nombre",
+        mensaje.trim()
+    );
+
+    await enviarTexto(
+        numero,
+        `✅ *Nombre artístico actualizado*
+
+🎤 Nuevo nombre artístico:
+${mensaje.trim()}`
+    );
+
+    await enviarBotones(
+        numero,
+        `📋 ¿Qué quieres hacer ahora?`,
+        [
+            {
+                type: "reply",
+                reply: {
+                    id: "solicitud_seguir_editando",
+                    title: "✏️ Seguir editando"
+                }
+            },
+            {
+                type: "reply",
+                reply: {
+                    id: "solicitud_continuar",
+                    title: "➡️ Continuar"
+                }
+            }
+        ]
+    );
+
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_editar"
+    );
+
+    return res.sendStatus(200);
+}
+  
   if (botonId === "solicitud_continuar") {
 
     console.log("➡️ Continuar seleccionado");
