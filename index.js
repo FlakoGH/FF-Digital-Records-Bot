@@ -793,7 +793,64 @@ ${correoActual}
 
         return res.sendStatus(200);
     }
+
+  if (botonId === "solicitud_continuar") {
+
+    console.log("➡️ Continuar seleccionado");
+
+    const correo = conversaciones.obtenerDato(numero, "correo");
+    const nombreArtistico = conversaciones.obtenerDato(numero, "nombre");
+    const telefono = conversaciones.obtenerDato(numero, "telefono");
+    const haLanzado = conversaciones.obtenerDato(numero, "ha_lanzado");
+    const distribuidoraAnterior = conversaciones.obtenerDato(
+        numero,
+        "distribuidora_anterior"
+    );
+    const infoAdicional = conversaciones.obtenerDato(
+        numero,
+        "info_adicional"
+    );
+
+    await enviarBotones(
+        numero,
+        `📋 *Resumen actualizado de tu solicitud*
+
+📧 *Correo:* ${correo}
+🎤 *Nombre artístico:* ${nombreArtistico}
+📱 *Teléfono:* ${telefono}
+🎵 *¿Ha lanzado música antes?:* ${haLanzado}
+🏢 *Distribuidora anterior:* ${distribuidoraAnterior}
+📝 *Información adicional:* ${infoAdicional}
+
+¿Los datos son correctos?`,
+        [
+            {
+                type: "reply",
+                reply: {
+                    id: "solicitud_confirmar",
+                    title: "✅ Confirmar"
+                }
+            },
+            {
+                type: "reply",
+                reply: {
+                    id: "solicitud_editar",
+                    title: "✏️ Editar"
+                }
+            }
+        ]
+    );
+
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_confirmacion"
+    );
+
+    return res.sendStatus(200);
 }
+  
+}
+  
    if (estadoActual === "solicitud_distribucion_editar_correo") {
 
     console.log("📧 Nuevo correo recibido:", mensaje);
