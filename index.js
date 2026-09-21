@@ -732,9 +732,9 @@ Tu solicitud de distribución fue registrada correctamente.
         );
 
                conversaciones.guardar(
-            numero,
-            ""
-        );
+    numero,
+    "solicitud_distribucion_editar"
+);
 
         return res.sendStatus(200);
     }
