@@ -731,13 +731,16 @@ Tu solicitud de distribución fue registrada correctamente.
 0️⃣ Cancelar`
         );
 
-        conversaciones.guardar(
+               conversaciones.guardar(
             numero,
             "solicitud_distribucion_editar"
         );
 
         return res.sendStatus(200);
     }
+
+}
+
 
 if (estadoActual === "solicitud_distribucion_editar") {
 
@@ -790,8 +793,6 @@ Ahora puedes continuar editando los demás datos de tu solicitud.`
     return res.sendStatus(200);
 }
    
-}
-
 if (estadoActual === "solicitud_distribucion_completada") {
 
     console.log("🏠 Volver al inicio seleccionado:", botonId);
