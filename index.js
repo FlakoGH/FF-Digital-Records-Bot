@@ -771,12 +771,20 @@ if (estadoActual === "solicitud_distribucion_editar") {
 
     if (texto === "1") {
 
-        await enviarTexto(
-            numero,
-            `📧 *Editar correo*
+    const correoActual = conversaciones.obtenerDato(
+        numero,
+        "correo"
+    );
 
-Escríbeme tu nuevo correo electrónico:`
-        );
+    await enviarTexto(
+        numero,
+        `📧 *Editar correo*
+
+📌 Correo actual:
+${correoActual}
+
+✏️ Escríbeme tu nuevo correo electrónico:`
+    );
 
         conversaciones.guardar(
             numero,
