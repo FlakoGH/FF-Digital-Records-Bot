@@ -739,6 +739,57 @@ Tu solicitud de distribución fue registrada correctamente.
         return res.sendStatus(200);
     }
 
+if (estadoActual === "solicitud_distribucion_editar") {
+
+    console.log("✏️ Opción de edición seleccionada:", texto);
+
+    if (texto === "1") {
+
+        await enviarTexto(
+            numero,
+            `📧 *Editar correo*
+
+Escríbeme tu nuevo correo electrónico:`
+        );
+
+        conversaciones.guardar(
+            numero,
+            "solicitud_distribucion_editar_correo"
+        );
+
+        return res.sendStatus(200);
+    }
+
+}
+
+   if (estadoActual === "solicitud_distribucion_editar_correo") {
+
+    console.log("📧 Nuevo correo recibido:", mensaje);
+
+    conversaciones.guardarDato(
+        numero,
+        "correo",
+        mensaje.trim()
+    );
+
+    await enviarTexto(
+        numero,
+        `✅ *Correo actualizado*
+
+📧 Nuevo correo:
+${mensaje.trim()}
+
+Ahora puedes continuar editando los demás datos de tu solicitud.`
+    );
+
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_editar"
+    );
+
+    return res.sendStatus(200);
+}
+   
 }
 
 if (estadoActual === "solicitud_distribucion_completada") {
