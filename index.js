@@ -733,7 +733,7 @@ Tu solicitud de distribución fue registrada correctamente.
 
                conversaciones.guardar(
             numero,
-            "solicitud_distribucion_editar"
+            ""
         );
 
         return res.sendStatus(200);
@@ -746,15 +746,13 @@ if (estadoActual === "solicitud_distribucion_editar") {
 
     console.log("✏️ Opción de edición seleccionada:", texto);
 
-    if (texto === "1") {
+    if (botonId === "solicitud_seguir_editando") {
 
-      if (botonId === "solicitud_seguir_editando") {
+        console.log("✏️ Seguir editando seleccionado");
 
-    console.log("✏️ Seguir editando seleccionado");
-
-    await enviarTexto(
-        numero,
-        `✏️ *Editar solicitud*
+        await enviarTexto(
+            numero,
+            `✏️ *Editar solicitud*
 
 ¿Qué dato quieres modificar?
 
@@ -766,10 +764,12 @@ if (estadoActual === "solicitud_distribucion_editar") {
 6️⃣ Información adicional
 
 0️⃣ Cancelar`
-    );
+        );
 
-    return res.sendStatus(200);
-}
+        return res.sendStatus(200);
+    }
+
+    if (texto === "1") {
 
         await enviarTexto(
             numero,
@@ -785,9 +785,7 @@ Escríbeme tu nuevo correo electrónico:`
 
         return res.sendStatus(200);
     }
-
 }
-
    if (estadoActual === "solicitud_distribucion_editar_correo") {
 
     console.log("📧 Nuevo correo recibido:", mensaje);
