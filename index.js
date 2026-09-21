@@ -748,6 +748,29 @@ if (estadoActual === "solicitud_distribucion_editar") {
 
     if (texto === "1") {
 
+      if (botonId === "solicitud_seguir_editando") {
+
+    console.log("✏️ Seguir editando seleccionado");
+
+    await enviarTexto(
+        numero,
+        `✏️ *Editar solicitud*
+
+¿Qué dato quieres modificar?
+
+1️⃣ Correo
+2️⃣ Nombre artístico
+3️⃣ Número de teléfono
+4️⃣ ¿Has lanzado música?
+5️⃣ Distribuidora anterior
+6️⃣ Información adicional
+
+0️⃣ Cancelar`
+    );
+
+    return res.sendStatus(200);
+}
+
         await enviarTexto(
             numero,
             `📧 *Editar correo*
@@ -776,15 +799,33 @@ Escríbeme tu nuevo correo electrónico:`
     );
 
     await enviarTexto(
-        numero,
-        `✅ *Correo actualizado*
+    numero,
+    `✅ *Correo actualizado*
 
 📧 Nuevo correo:
-${mensaje.trim()}
+${mensaje.trim()}`
+);
 
-Ahora puedes continuar editando los demás datos de tu solicitud.`
-    );
-
+await enviarBotones(
+    numero,
+    `📋 ¿Qué quieres hacer ahora?`,
+    [
+        {
+            type: "reply",
+            reply: {
+                id: "solicitud_seguir_editando",
+                title: "✏️ Seguir editando"
+            }
+        },
+        {
+            type: "reply",
+            reply: {
+                id: "solicitud_continuar",
+                title: "➡️ Continuar"
+            }
+        }
+    ]
+);
     conversaciones.guardar(
         numero,
         "solicitud_distribucion_editar"
