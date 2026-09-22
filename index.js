@@ -978,6 +978,31 @@ No aplica
 
     return res.sendStatus(200);
 }
+
+if (texto === "6") {
+
+    const infoActual = conversaciones.obtenerDato(
+        numero,
+        "info_adicional"
+    );
+
+    await enviarTexto(
+        numero,
+        `📝 *Editar información adicional*
+
+📌 Información actual:
+${infoActual || "No has agregado información adicional."}
+
+✏️ Escríbeme la nueva información que quieras incluir en tu solicitud:`
+    );
+
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_editar_info"
+    );
+
+    return res.sendStatus(200);
+}
   
 }
   
@@ -1074,6 +1099,53 @@ ${mensaje.trim()}`
 
     return res.sendStatus(200);
 }
+
+  if (estadoActual === "solicitud_distribucion_editar_info") {
+
+    console.log("📝 Nueva información adicional recibida:", mensaje);
+
+    conversaciones.guardarDato(
+        numero,
+        "info_adicional",
+        mensaje.trim()
+    );
+
+    await enviarTexto(
+        numero,
+        `✅ *Información adicional actualizada*
+
+📝 Nueva información:
+${mensaje.trim()}`
+    );
+
+    await enviarBotones(
+        numero,
+        `📋 ¿Qué quieres hacer ahora?`,
+        [
+            {
+                type: "reply",
+                reply: {
+                    id: "solicitud_seguir_editando",
+                    title: "✏️ Seguir editando"
+                }
+            },
+            {
+                type: "reply",
+                reply: {
+                    id: "solicitud_continuar",
+                    title: "➡️ Continuar"
+                }
+            }
+        ]
+    );
+
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_editar"
+    );
+
+    return res.sendStatus(200);
+  }
 
   if (estadoActual === "solicitud_distribucion_editar_lanzamientos") {
 
