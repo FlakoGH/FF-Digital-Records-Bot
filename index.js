@@ -10,6 +10,7 @@ const menuReleases = require("./menus/menuReleases");
 const menuContacto = require("./menus/menuContacto");
 const { enviarTexto, enviarBotones, enviarLista } = require("./whatsapp/enviarTexto");
 const conversaciones = require("./estado/conversaciones");
+const { conectarMongoDB } = require("./servicios/mongodb");
 const linksMusica = require("./links/musica");
 const linksRedes = require("./links/redes");
 const linksReleases = require("./links/releases");
@@ -1791,6 +1792,14 @@ console.log("🧠 Estado actual:", estadoActual);
   }
 
 });
-app.listen(PORT, () => {
-  console.log(`Servidor iniciado en el puerto ${PORT}`);
-});
+conectarMongoDB()
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(`Servidor iniciado en el puerto ${PORT}`);
+        });
+    })
+    .catch((error) => {
+        console.error("❌ No se pudo iniciar MongoDB.");
+        console.error(error.message);
+        process.exit(1);
+    });
