@@ -1074,7 +1074,6 @@ ${mensaje.trim()}`
 
     return res.sendStatus(200);
 }
-  }
 
   if (estadoActual === "solicitud_distribucion_editar_lanzamientos") {
 
