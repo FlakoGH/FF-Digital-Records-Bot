@@ -884,6 +884,100 @@ ${haLanzadoActual}
 
     return res.sendStatus(200);
 }
+
+if (texto === "5") {
+
+    const haLanzadoActual = conversaciones.obtenerDato(
+        numero,
+        "ha_lanzado"
+    );
+
+    const distribuidoraActual = conversaciones.obtenerDato(
+        numero,
+        "distribuidora_anterior"
+    );
+
+    if (haLanzadoActual === "Sí") {
+
+        await enviarBotones(
+            numero,
+            `🏢 *Distribuidora anterior*
+
+📌 Actualmente tienes:
+${distribuidoraActual}
+
+¿Qué quieres hacer?`,
+            [
+                {
+                    type: "reply",
+                    reply: {
+                        id: "editar_distribuidora",
+                        title: "🏢 Cambiar distribuidora"
+                    }
+                },
+                {
+                    type: "reply",
+                    reply: {
+                        id: "solicitud_seguir_editando",
+                        title: "✏️ Seguir editando"
+                    }
+                },
+                {
+                    type: "reply",
+                    reply: {
+                        id: "solicitud_continuar",
+                        title: "➡️ Continuar"
+                    }
+                }
+            ]
+        );
+
+        return res.sendStatus(200);
+    }
+
+    if (haLanzadoActual === "No") {
+
+        await enviarBotones(
+            numero,
+            `🏢 *Distribuidora anterior*
+
+📌 Actualmente indicaste:
+❌ No, no has lanzado música anteriormente.
+
+🏢 Distribuidora anterior:
+No aplica
+
+¿Qué quieres hacer?`,
+            [
+                {
+                    type: "reply",
+                    reply: {
+                        id: "editar_he_distribuido",
+                        title: "🎵 Sí, he distribuido"
+                    }
+                },
+                {
+                    type: "reply",
+                    reply: {
+                        id: "solicitud_seguir_editando",
+                        title: "✏️ Seguir editando"
+                    }
+                },
+                {
+                    type: "reply",
+                    reply: {
+                        id: "solicitud_continuar",
+                        title: "➡️ Continuar"
+                    }
+                }
+            ]
+        );
+
+        return res.sendStatus(200);
+    }
+
+    return res.sendStatus(200);
+}
   
 }
   
@@ -1171,7 +1265,7 @@ ${haLanzadoActual}
 
     return res.sendStatus(200);
 }
-
+ 
 if (estadoActual === "solicitud_distribucion_editar_lanzamientos_distro") {
 
     console.log("🏢 Nueva distribuidora seleccionada:", botonId);
@@ -1233,6 +1327,200 @@ ${distribuidoraSeleccionada}`
     conversaciones.guardar(
         numero,
         "solicitud_distribucion_editar"
+    );
+
+    return res.sendStatus(200);
+}
+
+if (botonId === "editar_he_distribuido") {
+
+    console.log("🎵 El usuario indicó que sí ha distribuido anteriormente");
+
+    conversaciones.guardarDato(
+        numero,
+        "ha_lanzado",
+        "Sí"
+    );
+
+    await enviarTexto(
+        numero,
+        `🎵 Has indicado que sí has lanzado/distribuido música anteriormente.`
+    );
+
+    await enviarLista(
+        numero,
+        `📋 ¿Con qué distribuidora has lanzado música anteriormente?`,
+        "Elegir distribuidora",
+        [
+            {
+                title: "Distros principales",
+                rows: [
+                    {
+                        id: "distro_onerpm",
+                        title: "OneRPM",
+                        description: "Distribución musical"
+                    },
+                    {
+                        id: "distro_distrokid",
+                        title: "DistroKid",
+                        description: "Distribución independiente"
+                    },
+                    {
+                        id: "distro_symphonic",
+                        title: "Symphonic",
+                        description: "Distribución y servicios"
+                    },
+                    {
+                        id: "distro_naeku",
+                        title: "Naeku",
+                        description: "Distribución musical"
+                    }
+                ]
+            },
+            {
+                title: "Más distribuidoras",
+                rows: [
+                    {
+                        id: "distro_tunecore",
+                        title: "TuneCore",
+                        description: "Distribución digital"
+                    },
+                    {
+                        id: "distro_cdbaby",
+                        title: "CD Baby",
+                        description: "Distribución para artistas"
+                    },
+                    {
+                        id: "distro_ditto",
+                        title: "Ditto",
+                        description: "Distribución independiente"
+                    },
+                    {
+                        id: "distro_amuse",
+                        title: "Amuse",
+                        description: "Distribución digital"
+                    },
+                    {
+                        id: "distro_believe",
+                        title: "Believe",
+                        description: "Servicios para artistas"
+                    }
+                ]
+            },
+            {
+                title: "Otra opción",
+                rows: [
+                    {
+                        id: "distro_otro",
+                        title: "Otra distribuidora",
+                        description: "Distribución musical"
+                    }
+                ]
+            }
+        ]
+    );
+
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_editar_lanzamientos_distro"
+    );
+
+    return res.sendStatus(200);
+}
+
+if (botonId === "editar_distribuidora") {
+
+    const distribuidoraActual = conversaciones.obtenerDato(
+        numero,
+        "distribuidora_anterior"
+    );
+
+    await enviarTexto(
+        numero,
+        `🏢 *Editar distribuidora anterior*
+
+📌 Actualmente tienes:
+${distribuidoraActual}
+
+✏️ Vamos a actualizar este dato.`
+    );
+
+    await enviarLista(
+        numero,
+        `📋 ¿Con qué distribuidora has lanzado música anteriormente?`,
+        "Elegir distribuidora",
+        [
+            {
+                title: "Distros principales",
+                rows: [
+                    {
+                        id: "distro_onerpm",
+                        title: "OneRPM",
+                        description: "Distribución musical"
+                    },
+                    {
+                        id: "distro_distrokid",
+                        title: "DistroKid",
+                        description: "Distribución independiente"
+                    },
+                    {
+                        id: "distro_symphonic",
+                        title: "Symphonic",
+                        description: "Distribución y servicios"
+                    },
+                    {
+                        id: "distro_naeku",
+                        title: "Naeku",
+                        description: "Distribución musical"
+                    }
+                ]
+            },
+            {
+                title: "Más distribuidoras",
+                rows: [
+                    {
+                        id: "distro_tunecore",
+                        title: "TuneCore",
+                        description: "Distribución digital"
+                    },
+                    {
+                        id: "distro_cdbaby",
+                        title: "CD Baby",
+                        description: "Distribución para artistas"
+                    },
+                    {
+                        id: "distro_ditto",
+                        title: "Ditto",
+                        description: "Distribución independiente"
+                    },
+                    {
+                        id: "distro_amuse",
+                        title: "Amuse",
+                        description: "Distribución digital"
+                    },
+                    {
+                        id: "distro_believe",
+                        title: "Believe",
+                        description: "Servicios para artistas"
+                    }
+                ]
+            },
+            {
+                title: "Otra opción",
+                rows: [
+                    {
+                        id: "distro_otro",
+                        title: "Otra distribuidora",
+                        description: "Distribución musical"
+                    }
+                ]
+            }
+        ]
+    );
+
+    conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_editar_lanzamientos_distro"
     );
 
     return res.sendStatus(200);
