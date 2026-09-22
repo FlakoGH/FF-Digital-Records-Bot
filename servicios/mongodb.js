@@ -8,9 +8,13 @@ if (!uri) {
 
 const client = new MongoClient(uri);
 
+let db;
+
 async function conectarMongoDB() {
     try {
         await client.connect();
+
+        db = client.db("ff_digital_records");
 
         console.log("🍃 MongoDB conectado correctamente.");
 
@@ -23,7 +27,16 @@ async function conectarMongoDB() {
     }
 }
 
+function obtenerColeccionConversaciones() {
+    if (!db) {
+        throw new Error("❌ MongoDB todavía no está conectado.");
+    }
+
+    return db.collection("conversaciones");
+}
+
 module.exports = {
     client,
-    conectarMongoDB
+    conectarMongoDB,
+    obtenerColeccionConversaciones
 };
