@@ -1074,47 +1074,7 @@ ${mensaje.trim()}`
 
     return res.sendStatus(200);
 }
-
-  if (texto === "4") {
-
-    const haLanzadoActual = conversaciones.obtenerDato(
-        numero,
-        "ha_lanzado"
-    );
-
-    await enviarBotones(
-        numero,
-        `🎵 *Editar lanzamientos anteriores*
-
-📌 Respuesta actual:
-${haLanzadoActual}
-
-¿Has lanzado música anteriormente?`,
-        [
-            {
-                type: "reply",
-                reply: {
-                    id: "editar_lanzamientos_si",
-                    title: "✅ Sí"
-                }
-            },
-            {
-                type: "reply",
-                reply: {
-                    id: "editar_lanzamientos_no",
-                    title: "❌ No"
-                }
-            }
-        ]
-    );
-
-    conversaciones.guardar(
-        numero,
-        "solicitud_distribucion_editar_lanzamientos"
-    );
-
-    return res.sendStatus(200);
-}
+  }
 
   if (estadoActual === "solicitud_distribucion_editar_lanzamientos") {
 
