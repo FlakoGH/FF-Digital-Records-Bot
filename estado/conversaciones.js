@@ -47,23 +47,27 @@ function obtener(numero) {
  * Guarda el estado en memoria
  * y lo persiste en MongoDB.
  */
-function guardar(numero, estado) {
+async function guardar(numero, estado) {
 
     conversaciones[numero] = estado;
 
     const coleccion =
         obtenerColeccionConversaciones();
 
-    coleccion.updateOne(
-        { _id: numero },
-        {
-            $set: {
-                estado: estado,
-                updatedAt: new Date()
-            }
-        },
-        { upsert: true }
-    ).catch((error) => {
+    try {
+
+        await coleccion.updateOne(
+            { _id: numero },
+            {
+                $set: {
+                    estado: estado,
+                    updatedAt: new Date()
+                }
+            },
+            { upsert: true }
+        );
+
+    } catch (error) {
 
         console.error(
             "❌ Error guardando estado en MongoDB:"
@@ -71,7 +75,7 @@ function guardar(numero, estado) {
 
         console.error(error.message);
 
-    });
+    }
 
 }
 
@@ -80,7 +84,7 @@ function guardar(numero, estado) {
  * Guarda un dato de la conversación
  * y lo persiste en MongoDB.
  */
-function guardarDato(numero, campo, valor) {
+async function guardarDato(numero, campo, valor) {
 
     if (!datos[numero]) {
         datos[numero] = {};
@@ -91,16 +95,20 @@ function guardarDato(numero, campo, valor) {
     const coleccion =
         obtenerColeccionConversaciones();
 
-    coleccion.updateOne(
-        { _id: numero },
-        {
-            $set: {
-                [`datos.${campo}`]: valor,
-                updatedAt: new Date()
-            }
-        },
-        { upsert: true }
-    ).catch((error) => {
+    try {
+
+        await coleccion.updateOne(
+            { _id: numero },
+            {
+                $set: {
+                    [`datos.${campo}`]: valor,
+                    updatedAt: new Date()
+                }
+            },
+            { upsert: true }
+        );
+
+    } catch (error) {
 
         console.error(
             "❌ Error guardando dato en MongoDB:"
@@ -108,7 +116,7 @@ function guardarDato(numero, campo, valor) {
 
         console.error(error.message);
 
-    });
+    }
 
 }
 
