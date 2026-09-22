@@ -912,7 +912,7 @@ ${distribuidoraActual}
                     type: "reply",
                     reply: {
                         id: "editar_distribuidora",
-                        title: "🏢 Cambiar distribuidora"
+                        title: "🏢 Cambiar distro"
                     }
                 },
                 {
