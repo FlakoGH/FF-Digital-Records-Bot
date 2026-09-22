@@ -1794,6 +1794,9 @@ console.log("🧠 Estado actual:", estadoActual);
 });
 conectarMongoDB()
     .then(() => {
+        return conversaciones.cargarConversaciones();
+    })
+    .then(() => {
         app.listen(PORT, () => {
             console.log(`Servidor iniciado en el puerto ${PORT}`);
         });
