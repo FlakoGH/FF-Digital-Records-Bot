@@ -131,6 +131,4 @@ module.exports = {
     guardarDato,
     obtenerDato
 
-};    obtenerDato
-
 };
