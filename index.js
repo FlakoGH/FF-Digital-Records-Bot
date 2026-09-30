@@ -112,7 +112,7 @@ if (estadoActual === "menu_principal" && texto === "1") {
 
     await enviarTexto(numero, menuMusica);
 
-conversaciones.guardar(numero, "menu_musica");
+await conversaciones.guardar(numero, "menu_musica");
 
     return res.sendStatus(200);
 
@@ -124,7 +124,7 @@ conversaciones.guardar(numero, "menu_musica");
 
     await enviarTexto(numero, menuRedes);
 
-    conversaciones.guardar(numero, "menu_redes");
+    await conversaciones.guardar(numero, "menu_redes");
 
     return res.sendStatus(200);
 
@@ -136,7 +136,7 @@ if (estadoActual === "menu_principal" && texto === "5") {
 
     await enviarTexto(numero, menuContacto);
 
-    conversaciones.guardar(numero, "menu_contacto");
+    await conversaciones.guardar(numero, "menu_contacto");
 
     return res.sendStatus(200);
 
@@ -148,7 +148,7 @@ if (estadoActual === "menu_principal" && texto === "4") {
 
     await enviarTexto(numero, menuReleases);
 
-    conversaciones.guardar(numero, "menu_releases");
+    await conversaciones.guardar(numero, "menu_releases");
 
     return res.sendStatus(200);
 
@@ -237,7 +237,7 @@ if (estadoActual === "menu_musica" && texto === "0") {
 
     await enviarTexto(numero, menu(nombre));
 
-    conversaciones.guardar(numero, "menu_principal");
+    await conversaciones.guardar(numero, "menu_principal");
 
     return res.sendStatus(200);
 
@@ -249,7 +249,7 @@ if (texto === "99") {
 
     await enviarTexto(numero, menu(nombre));
 
-    conversaciones.guardar(numero, "menu_principal");
+    await conversaciones.guardar(numero, "menu_principal");
 
     return res.sendStatus(200);
 
@@ -326,7 +326,7 @@ if (texto === "99") {
 
     await enviarTexto(numero, menu(nombre));
 
-    conversaciones.guardar(numero, "menu_principal");
+    await conversaciones.guardar(numero, "menu_principal");
 
     return res.sendStatus(200);
 }
@@ -385,7 +385,7 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 📧 Primero, escríbeme tu correo electrónico:`
     );
 
-    conversaciones.guardar(numero, "solicitud_distribucion_correo");
+    await conversaciones.guardar(numero, "solicitud_distribucion_correo");
 
     return res.sendStatus(200);
 
@@ -404,7 +404,7 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 🎤 Ahora escríbeme tu *nombre artístico*:`
     );
 
-    conversaciones.guardar(numero, "solicitud_distribucion_nombre");
+    await conversaciones.guardar(numero, "solicitud_distribucion_nombre");
 
     return res.sendStatus(200);
 
@@ -423,7 +423,7 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 📱 Ahora escríbeme tu *número de teléfono*:`
     );
 
-    conversaciones.guardar(numero, "solicitud_distribucion_telefono");
+    await conversaciones.guardar(numero, "solicitud_distribucion_telefono");
 
     return res.sendStatus(200);
 
@@ -458,7 +458,7 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
         ]
     );
 
-    conversaciones.guardar(numero, "solicitud_distribucion_lanzamientos");
+    await conversaciones.guardar(numero, "solicitud_distribucion_lanzamientos");
 
     return res.sendStatus(200);
 
@@ -547,7 +547,7 @@ if (estadoActual === "solicitud_distribucion_lanzamientos") {
             ]
         );
 
-        conversaciones.guardar(
+        await conversaciones.guardar(
             numero,
             "solicitud_distribucion_plataformas"
         );
@@ -567,7 +567,7 @@ if (estadoActual === "solicitud_distribucion_lanzamientos") {
 📝 Ahora cuéntame cualquier información adicional que quieras incluir en tu solicitud de distribución.`
     );
 
-        conversaciones.guardar(
+        await conversaciones.guardar(
         numero,
         "solicitud_distribucion_info"
     );
@@ -612,7 +612,7 @@ if (estadoActual === "solicitud_distribucion_plataformas") {
 📝 Ahora cuéntame cualquier información adicional que quieras incluir en tu solicitud de distribución.`
     );
 
-    conversaciones.guardar(
+    await conversaciones.guardar(
         numero,
         "solicitud_distribucion_info"
     );
@@ -665,7 +665,7 @@ if (estadoActual === "solicitud_distribucion_plataformas") {
         }
     ]
 );
-    conversaciones.guardar(numero, "solicitud_distribucion_confirmacion");
+    await conversaciones.guardar(numero, "solicitud_distribucion_confirmacion");
 
     return res.sendStatus(200);
 
@@ -704,7 +704,7 @@ Tu solicitud de distribución fue registrada correctamente.
             ]
         );
 
-        conversaciones.guardar(
+        await conversaciones.guardar(
             numero,
             "solicitud_distribucion_completada"
         );
@@ -732,7 +732,7 @@ Tu solicitud de distribución fue registrada correctamente.
 0️⃣ Cancelar`
         );
 
-               conversaciones.guardar(
+               await conversaciones.guardar(
     numero,
     "solicitud_distribucion_editar"
 );
@@ -787,7 +787,7 @@ ${correoActual}
 ✏️ Escríbeme tu nuevo correo electrónico:`
     );
 
-        conversaciones.guardar(
+        await conversaciones.guardar(
             numero,
             "solicitud_distribucion_editar_correo"
         );
@@ -812,7 +812,7 @@ ${nombreActual}
 ✏️ Escríbeme tu nuevo nombre artístico:`
     );
 
-    conversaciones.guardar(
+    await conversaciones.guardar(
         numero,
         "solicitud_distribucion_editar_nombre"
     );
@@ -837,7 +837,7 @@ ${telefonoActual}
 ✏️ Escríbeme tu nuevo número de teléfono:`
     );
 
-    conversaciones.guardar(
+    await conversaciones.guardar(
         numero,
         "solicitud_distribucion_editar_telefono"
     );
@@ -878,7 +878,7 @@ ${haLanzadoActual}
         ]
     );
 
-    conversaciones.guardar(
+    await conversaciones.guardar(
         numero,
         "solicitud_distribucion_editar_lanzamientos"
     );
@@ -997,7 +997,7 @@ ${infoActual || "No has agregado información adicional."}
 ✏️ Escríbeme la nueva información que quieras incluir en tu solicitud:`
     );
 
-    conversaciones.guardar(
+    await conversaciones.guardar(
         numero,
         "solicitud_distribucion_editar_info"
     );
@@ -1046,7 +1046,7 @@ ${mensaje.trim()}`
         ]
     );
 
-    conversaciones.guardar(
+    await conversaciones.guardar(
         numero,
         "solicitud_distribucion_editar"
     );
@@ -1093,7 +1093,7 @@ ${mensaje.trim()}`
         ]
     );
 
-    conversaciones.guardar(
+    await conversaciones.guardar(
         numero,
         "solicitud_distribucion_editar"
     );
@@ -1140,7 +1140,7 @@ ${mensaje.trim()}`
         ]
     );
 
-    conversaciones.guardar(
+    await conversaciones.guardar(
         numero,
         "solicitud_distribucion_editar"
     );
@@ -1196,7 +1196,7 @@ ${mensaje.trim()}`
             ]
         );
 
-        conversaciones.guardar(
+        await conversaciones.guardar(
             numero,
             "solicitud_distribucion_editar"
         );
@@ -1287,7 +1287,7 @@ ${mensaje.trim()}`
             ]
         );
 
-        conversaciones.guardar(
+        await conversaciones.guardar(
             numero,
             "solicitud_distribucion_editar_lanzamientos_distro"
         );
@@ -1356,7 +1356,7 @@ ${distribuidoraSeleccionada}`
         ]
     );
 
-    conversaciones.guardar(
+    await conversaciones.guardar(
         numero,
         "solicitud_distribucion_editar"
     );
@@ -1452,7 +1452,7 @@ if (botonId === "editar_he_distribuido") {
         ]
     );
 
-    conversaciones.guardar(
+    await conversaciones.guardar(
         numero,
         "solicitud_distribucion_editar_lanzamientos_distro"
     );
@@ -1550,7 +1550,7 @@ ${distribuidoraActual}
         ]
     );
 
-    conversaciones.guardar(
+    await conversaciones.guardar(
         numero,
         "solicitud_distribucion_editar_lanzamientos_distro"
     );
@@ -1605,7 +1605,7 @@ ${distribuidoraActual}
         ]
     );
 
-    conversaciones.guardar(
+    await conversaciones.guardar(
         numero,
         "solicitud_distribucion_confirmacion"
     );
@@ -1651,7 +1651,7 @@ await enviarBotones(
         }
     ]
 );
-    conversaciones.guardar(
+    await conversaciones.guardar(
         numero,
         "solicitud_distribucion_editar"
     );
@@ -1670,7 +1670,7 @@ if (estadoActual === "solicitud_distribucion_completada") {
             menu(nombre)
         );
 
-        conversaciones.guardar(
+        await conversaciones.guardar(
             numero,
             "menu_principal"
         );
@@ -1686,7 +1686,7 @@ if (estadoActual === "menu_contacto" && texto === "0") {
 
     await enviarTexto(numero, menu(nombre));
 
-    conversaciones.guardar(numero, "menu_principal");
+    await conversaciones.guardar(numero, "menu_principal");
 
     return res.sendStatus(200);
 
@@ -1737,7 +1737,7 @@ if (estadoActual === "menu_releases" && texto === "0") {
 
     await enviarTexto(numero, menu(nombre));
 
-    conversaciones.guardar(numero, "menu_principal");
+    await conversaciones.guardar(numero, "menu_principal");
 
     return res.sendStatus(200);
 
@@ -1747,7 +1747,7 @@ if (estadoActual === "menu_releases" && texto === "0") {
 
 await enviarTexto(numero, menu(nombre));
 
-conversaciones.guardar(numero, "menu_principal");
+await conversaciones.guardar(numero, "menu_principal");
 
 return res.sendStatus(200);
 
