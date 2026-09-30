@@ -391,11 +391,31 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 
 }
 
-  if (estadoActual === "solicitud_distribucion_correo") {
+ if (estadoActual === "solicitud_distribucion_correo") {
 
-    console.log("📧 Correo recibido:", mensaje);
+    const correo = mensaje.trim();
 
-    conversaciones.guardarDato(numero, "correo", mensaje.trim());
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
+
+        console.log("⚠️ Correo inválido:", correo);
+
+        await enviarTexto(
+            numero,
+            `❌ Ese no parece un correo electrónico válido.
+
+📧 Por favor, escríbeme nuevamente tu correo:`
+        );
+
+        return res.sendStatus(200);
+    }
+
+    console.log("📧 Correo recibido:", correo);
+
+    await conversaciones.guardarDato(
+        numero,
+        "correo",
+        correo
+    );
 
     await enviarTexto(
         numero,
@@ -404,12 +424,14 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 🎤 Ahora escríbeme tu *nombre artístico*:`
     );
 
-    await conversaciones.guardar(numero, "solicitud_distribucion_nombre");
+    await conversaciones.guardar(
+        numero,
+        "solicitud_distribucion_nombre"
+    );
 
     return res.sendStatus(200);
 
 }
-
   if (estadoActual === "solicitud_distribucion_nombre") {
 
     console.log("🎤 Nombre artístico recibido:", mensaje);
