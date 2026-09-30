@@ -429,11 +429,31 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 
 }
 
-  if (estadoActual === "solicitud_distribucion_telefono") {
+if (estadoActual === "solicitud_distribucion_telefono") {
 
-    console.log("📱 Teléfono recibido:", mensaje);
+    const telefono = mensaje.trim();
 
-    conversaciones.guardarDato(numero, "telefono", mensaje.trim());
+    if (!/^\d+$/.test(telefono)) {
+
+        console.log("⚠️ Teléfono inválido:", telefono);
+
+        await enviarTexto(
+            numero,
+            `❌ Ese no parece un número de teléfono válido.
+
+📱 Por favor, escríbeme únicamente tu número de teléfono:`
+        );
+
+        return res.sendStatus(200);
+    }
+
+    console.log("📱 Teléfono recibido:", telefono);
+
+    await conversaciones.guardarDato(
+        numero,
+        "telefono",
+        telefono
+    );
 
     await enviarBotones(
         numero,
@@ -457,7 +477,6 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
             }
         ]
     );
-
     await conversaciones.guardar(numero, "solicitud_distribucion_lanzamientos");
 
     return res.sendStatus(200);
