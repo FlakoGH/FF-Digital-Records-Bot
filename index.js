@@ -436,7 +436,7 @@ Para ayudarte con tu solicitud de distribución, vamos a recopilar algunos datos
 
     console.log("🎤 Nombre artístico recibido:", mensaje);
 
-    conversaciones.guardarDato(numero, "nombre", mensaje.trim());
+    await conversaciones.guardarDato(numero, "nombre", mensaje.trim());
 
     await enviarTexto(
         numero,
@@ -511,7 +511,7 @@ if (estadoActual === "solicitud_distribucion_lanzamientos") {
 
     if (botonId === "lanzamientos_si") {
 
-        conversaciones.guardarDato(numero, "ha_lanzado", "Sí");
+        await conversaciones.guardarDato(numero, "ha_lanzado", "Sí");
 
         await enviarLista(
             numero,
@@ -598,8 +598,8 @@ if (estadoActual === "solicitud_distribucion_lanzamientos") {
 
     if (botonId === "lanzamientos_no") {
 
-    conversaciones.guardarDato(numero, "ha_lanzado", "No");
-    conversaciones.guardarDato(numero, "distribuidora_anterior", "No aplica");
+    await conversaciones.guardarDato(numero, "ha_lanzado", "No");
+    await conversaciones.guardarDato(numero, "distribuidora_anterior", "No aplica");
 
     await enviarTexto(
         numero,
@@ -640,7 +640,7 @@ if (estadoActual === "solicitud_distribucion_plataformas") {
         return res.sendStatus(200);
     }
 
-    conversaciones.guardarDato(
+    await conversaciones.guardarDato(
         numero,
         "distribuidora_anterior",
         distribuidoraSeleccionada
@@ -665,7 +665,7 @@ if (estadoActual === "solicitud_distribucion_plataformas") {
 
     console.log("📝 Información adicional recibida:", mensaje);
 
-    conversaciones.guardarDato(numero, "info_adicional", mensaje.trim());
+    await conversaciones.guardarDato(numero, "info_adicional", mensaje.trim());
 
     const correo = conversaciones.obtenerDato(numero, "correo");
     const nombre = conversaciones.obtenerDato(numero, "nombre");
@@ -1052,7 +1052,7 @@ ${infoActual || "No has agregado información adicional."}
 
     console.log("🎤 Nuevo nombre artístico recibido:", mensaje);
 
-    conversaciones.guardarDato(
+    await conversaciones.guardarDato(
         numero,
         "nombre",
         mensaje.trim()
@@ -1099,7 +1099,7 @@ ${mensaje.trim()}`
 
     console.log("📱 Nuevo teléfono recibido:", mensaje);
 
-    conversaciones.guardarDato(
+    await conversaciones.guardarDato(
         numero,
         "telefono",
         mensaje.trim()
@@ -1146,7 +1146,7 @@ ${mensaje.trim()}`
 
     console.log("📝 Nueva información adicional recibida:", mensaje);
 
-    conversaciones.guardarDato(
+    await conversaciones.guardarDato(
         numero,
         "info_adicional",
         mensaje.trim()
@@ -1195,13 +1195,13 @@ ${mensaje.trim()}`
 
     if (botonId === "editar_lanzamientos_no") {
 
-        conversaciones.guardarDato(
+        await conversaciones.guardarDato(
             numero,
             "ha_lanzado",
             "No"
         );
 
-        conversaciones.guardarDato(
+        await conversaciones.guardarDato(
             numero,
             "distribuidora_anterior",
             "No aplica"
@@ -1247,7 +1247,7 @@ ${mensaje.trim()}`
 
     if (botonId === "editar_lanzamientos_si") {
 
-        conversaciones.guardarDato(
+        await conversaciones.guardarDato(
             numero,
             "ha_lanzado",
             "Sí"
@@ -1362,7 +1362,7 @@ if (estadoActual === "solicitud_distribucion_editar_lanzamientos_distro") {
         return res.sendStatus(200);
     }
 
-    conversaciones.guardarDato(
+    await conversaciones.guardarDato(
         numero,
         "distribuidora_anterior",
         distribuidoraSeleccionada
@@ -1409,7 +1409,7 @@ if (botonId === "editar_he_distribuido") {
 
     console.log("🎵 El usuario indicó que sí ha distribuido anteriormente");
 
-    conversaciones.guardarDato(
+    await conversaciones.guardarDato(
         numero,
         "ha_lanzado",
         "Sí"
@@ -1658,7 +1658,7 @@ ${distribuidoraActual}
 
     console.log("📧 Nuevo correo recibido:", mensaje);
 
-    conversaciones.guardarDato(
+    await conversaciones.guardarDato(
         numero,
         "correo",
         mensaje.trim()
